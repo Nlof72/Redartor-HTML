@@ -1,5 +1,6 @@
 import './App.css';
 import {makeStyles} from '@mui/styles';
+import LeftSideBar from "./components/LeftSideBar/LeftSideBar";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,14 +18,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function App() {
+function App(props) {
 
     const classes = useStyles();
 
     return (
         <div className={classes.gridContainer}>
-            <div className={classes.gridContainerItems}>
-                // TODO: Реализовать левую боковую панель
+            <div>
+                <LeftSideBar componentsList={props.componentsList}/>
             </div>
             <div className={classes.gridContainerItems}>
                 // TODO: Реализовать холст
