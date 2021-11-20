@@ -1,25 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import {makeStyles} from '@mui/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+    gridContainer: {
+        display: "grid",
+        gridTemplateColumns: "2fr 8fr 2fr",
+        backgroundColor: theme.palette.background.default,
+        width: "100vw",
+        height: "100vh",
+    },
+    // MOCK
+    gridContainerItems: {
+        border: "1px solid black"
+    }
+}));
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const classes = useStyles();
+
+    return (
+        <div className={classes.gridContainer}>
+            <div className={classes.gridContainerItems}>
+                // TODO: Реализовать левую боковую панель
+            </div>
+            <div className={classes.gridContainerItems}>
+                // TODO: Реализовать холст
+            </div>
+            <div className={classes.gridContainerItems}>
+                // TODO: Реализовать правую боковую панель
+            </div>
+        </div>
+    );
 }
 
 export default App;
