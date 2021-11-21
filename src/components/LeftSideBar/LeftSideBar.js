@@ -13,14 +13,14 @@ const useStyles = makeStyles((theme) => ({
         height:"fit-content",
         backgroundColor: "green",
     }
-
 }));
 
-
+// const StyledSeatchContainer = styled('div')()
 
 function LeftSideBar(props) {
 
     const classes = useStyles();
+
     return (
         <div>
             <div className={classes.searchContainer}>

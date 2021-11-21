@@ -14,7 +14,9 @@ const Search = styled("div")(({theme}) => ({
     [theme.breakpoints.up("sm")]: {
         width: "auto"
     }
+
 }));
+
 const SearchIconWrapper = styled("div")(({theme}) => ({
     padding: theme.spacing(0, 2),
     height: "100%",
@@ -24,6 +26,7 @@ const SearchIconWrapper = styled("div")(({theme}) => ({
     alignItems: "center",
     justifyContent: "center"
 }));
+
 const StyledInputBase = styled(InputBase)(({theme}) => ({
     color: "inherit",
     "& .MuiInputBase-input": {

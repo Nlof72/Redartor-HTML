@@ -10,10 +10,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.default,
         width: "100vw",
         height: "100vh",
+
     },
     // MOCK
     gridContainerItems: {
-        border: "1px solid black"
+        border: "1px solid black",
     }
 }));
 

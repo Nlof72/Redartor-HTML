@@ -12,43 +12,42 @@ import {theme} from "../../../theme";
 
 
 function ListComponents(props) {
-    const [open, setOpen] = React.useState(false);
-    const handleClick = () => {
-        setOpen(!open);
+    const [open, setOpen] = React.useState({});
+    const handleClick = (prop, value) => {
+        setOpen({...open, [prop]: value});
     };
 
     let componentsList = props.componentsList;
 
 
     return (
-
-        componentsList.map((item, key) => {
+        componentsList.map((item, index) => {
             return (
                 <List
                     sx={{width: '100%', maxWidth: 360, bgcolor: theme.palette.background.default}}
                     component="nav"
                     aria-labelledby="nested-list-subheader">
 
-                    <ListItemButton onClick={handleClick}>
+                    <ListItemButton onClick={() => {
+                        handleClick(item.name, !open[item.name])
+                    }}>
                         <ListItemIcon>
                             <InboxIcon/>
                         </ListItemIcon>
                         <ListItemText primary={item.name}/>
-                        {open ? <ExpandLess/> : <ExpandMore/>}
+                        {open[item.name] ? <ExpandLess/> : <ExpandMore/>}
                     </ListItemButton>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            {/*item.components.map( (i, key) => {*/}
-                            {/*console.log(i)*/}
 
-                        {/*    return ( <ListItemButton sx={{pl: 4}}>*/}
-                        {/*    <ListItemIcon>*/}
-                        {/*    <StarBorder/>*/}
-                        {/*    </ListItemIcon>*/}
-                        {/*    <ListItemText primary={i}/>*/}
-                        {/*    </ListItemButton>)*/}
-                        {/*}*/}
-                        {/*})*/}
+                    <Collapse in={open[item.name]} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            {item.components.map((i, key) => {
+                                return (<ListItemButton sx={{pl: 4}}>
+                                    <ListItemIcon>
+                                        <StarBorder/>
+                                    </ListItemIcon>
+                                    <ListItemText primary={i}/>
+                                </ListItemButton>)
+                            })}
                         </List>
                     </Collapse>
                 </List>
