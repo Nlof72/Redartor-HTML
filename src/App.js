@@ -1,5 +1,6 @@
 import './App.css';
 import {makeStyles} from '@mui/styles';
+import CanvasContainer from "./Components/CanvasContainer/CanvasContainer";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +28,7 @@ function App() {
                 // TODO: Реализовать левую боковую панель
             </div>
             <div className={classes.gridContainerItems}>
-                // TODO: Реализовать холст
+               <CanvasContainer/>
             </div>
             <div className={classes.gridContainerItems}>
                 // TODO: Реализовать правую боковую панель
