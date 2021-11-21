@@ -1,5 +1,6 @@
 import './App.css';
 import {makeStyles} from '@mui/styles';
+import LeftSideBar from "./components/LeftSideBar/LeftSideBar";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -9,26 +10,25 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.default,
         width: "100vw",
         height: "100vh",
+
     },
     // MOCK
     gridContainerItems: {
-        border: "1px solid black"
+        border: "1px solid black",
     }
 }));
 
 
-function App() {
+function App(props) {
 
     const classes = useStyles();
 
     return (
         <div className={classes.gridContainer}>
-            <div className={classes.gridContainerItems}>
-                // TODO: Реализовать левую боковую панель
+            <div>
+                <LeftSideBar componentsList={props.componentsList}/>
             </div>
-            <div className={classes.gridContainerItems}>
-                // TODO: Реализовать холст
-            </div>
+            <div className={classes.gridContainerItems}></div>
             <div className={classes.gridContainerItems}>
                 // TODO: Реализовать правую боковую панель
             </div>
