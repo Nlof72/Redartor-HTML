@@ -7,40 +7,48 @@ import {theme} from "./theme";
 import {ThemeProvider} from "@mui/material/styles";
 
 
-let tempStoreComponents = [
+const tempStoreComponents = [
     {
         name: "Элементы взаимодействия",
         type: "action",
+        icon: "",
         components: [
             {
                 name: "Кнопка",
-                type: "button"
+                type: "button",
+                icon: "",
             },
             {
                 name: "Поле ввода",
-                type: "input"
+                type: "input",
+                icon: "",
             }
         ],
     },
     {
-        name: "Текс",
+        name: "Тексt",
         type: "text",
+        icon: "",
         components: [
             {
                 name: "Ссылка",
-                type: "link"
+                type: "link",
+                icon: "",
             },
             {
                 name: "Жирный текст",
-                type: "bold"
+                type: "bold",
+                icon: "",
             },
             {
                 name: "Курсив",
-                type: "italic"
+                type: "italic",
+                icon: "",
             },
             {
                 name: "Загаловок",
-                type: "heading"
+                type: "heading",
+                icon: "",
             }
         ],
 
@@ -48,22 +56,27 @@ let tempStoreComponents = [
     {
         name: "Мультимедия",
         type: "multimedia",
+        icon: "",
         components: [
             {
                 name: "Картинка",
-                type: "image"
+                type: "image",
+                icon: "",
             },
             {
                 name: "Видео",
-                type: "video"
+                type: "video",
+                icon: "",
             },
             {
                 name: "Аудио",
-                type: "audio"
+                type: "audio",
+                icon: "",
             },
             {
                 name: "Видео",
-                type: "video"
+                type: "video",
+                icon: "",
             },
         ],
 
@@ -71,24 +84,29 @@ let tempStoreComponents = [
     {
         name: "Не знаю что тут будет",
         type: "universal",
+        icon: "",
         components: [
             {
                 name: "< div >",
-                type: "div"
+                type: "div",
+                icon: "",
             }
         ],
     },
     {
         name: "Другое",
         type: "other",
+        icon: "",
         components: [
             {
                 name: "Список",
-                type: "list"
+                type: "list",
+                icon: "",
             },
             {
                 name: "Таблица",
-                type: "table"
+                type: "table",
+                icon: "",
             }
         ],
 

@@ -33,7 +33,6 @@ function LeftSideBar(props) {
             <div className={classes.searchContainer}>
                 <Search/>
             </div>
-
             <div className={classes.componentsContainer} >
                 <ListComponents componentsList={props.componentsList}/>
             </div>

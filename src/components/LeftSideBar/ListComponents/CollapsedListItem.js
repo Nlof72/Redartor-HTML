@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 function CollapsedListItem(props) {
     return (
         <ListItemButton sx={{pl: 4}}>
-            <ListItemIcon type={props.type}/>
+            <ListItemIcon icon={props.icon}/>
             <ListItemText primary={props.name} />
         </ListItemButton>
     );
