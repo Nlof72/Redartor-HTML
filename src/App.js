@@ -1,5 +1,6 @@
 import './App.css';
 import {makeStyles} from '@mui/styles';
+import CanvasContainer from "./Components/CanvasContainer/CanvasContainer";
 import LeftSideBar from "./components/LeftSideBar/LeftSideBar";
 
 
@@ -29,6 +30,9 @@ function App(props) {
                 <LeftSideBar componentsList={props.componentsList}/>
             </div>
             <div className={classes.gridContainerItems}></div>
+            <div className={classes.gridContainerItems}>
+               <CanvasContainer/>
+            </div>
             <div className={classes.gridContainerItems}>
                 // TODO: Реализовать правую боковую панель
             </div>
