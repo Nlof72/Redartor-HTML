@@ -9,26 +9,90 @@ import {ThemeProvider} from "@mui/material/styles";
 
 let tempStoreComponents = [
     {
-        name: "Actions",
-        components: ["< button >", "< input >"],
+        name: "Элементы взаимодействия",
+        type: "action",
+        components: [
+            {
+                name: "Кнопка",
+                type: "button"
+            },
+            {
+                name: "Поле ввода",
+                type: "input"
+            }
+        ],
     },
     {
-        name: "Text",
-        components: ["< a >", "< b >", "< i >","< h >"]
-    },
-    {
-        name: "Multimedia",
-        components: ["< image >", "< video >", "< audio >", "< iframe >"]
-    },
-    {
-        name: "Universal",
-        components: ["< div >"]
-    },
-     {
-        name: "Other",
-        components: ["< ul >", "< lable >"]
-    },
+        name: "Текс",
+        type: "text",
+        components: [
+            {
+                name: "Ссылка",
+                type: "link"
+            },
+            {
+                name: "Жирный текст",
+                type: "bold"
+            },
+            {
+                name: "Курсив",
+                type: "italic"
+            },
+            {
+                name: "Загаловок",
+                type: "heading"
+            }
+        ],
 
+    },
+    {
+        name: "Мультимедия",
+        type: "multimedia",
+        components: [
+            {
+                name: "Картинка",
+                type: "image"
+            },
+            {
+                name: "Видео",
+                type: "video"
+            },
+            {
+                name: "Аудио",
+                type: "audio"
+            },
+            {
+                name: "Видео",
+                type: "video"
+            },
+        ],
+
+    },
+    {
+        name: "Не знаю что тут будет",
+        type: "universal",
+        components: [
+            {
+                name: "< div >",
+                type: "div"
+            }
+        ],
+    },
+    {
+        name: "Другое",
+        type: "other",
+        components: [
+            {
+                name: "Список",
+                type: "list"
+            },
+            {
+                name: "Таблица",
+                type: "table"
+            }
+        ],
+
+    },
 ]
 
 ReactDOM.render(

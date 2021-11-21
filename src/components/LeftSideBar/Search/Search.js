@@ -48,7 +48,7 @@ function LeftSideBar() {
                 <SearchIcon/>
             </SearchIconWrapper>
             <StyledInputBase
-                placeholder="Search…"
+                placeholder="Поиск…"
                 inputProps={{"aria-label": "search"}}
             />
         </Search>

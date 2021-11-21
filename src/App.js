@@ -28,9 +28,7 @@ function App(props) {
             <div>
                 <LeftSideBar componentsList={props.componentsList}/>
             </div>
-            <div className={classes.gridContainerItems}>
-                // TODO: Реализовать холст
-            </div>
+            <div className={classes.gridContainerItems}></div>
             <div className={classes.gridContainerItems}>
                 // TODO: Реализовать правую боковую панель
             </div>
