@@ -7,7 +7,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 const ActionsPanel = (props) => {
     return (
         <Stack
-            spacing={2}
+            spacing={5}
             direction="row"
             justifyContent="center"
             alignItems="center"
