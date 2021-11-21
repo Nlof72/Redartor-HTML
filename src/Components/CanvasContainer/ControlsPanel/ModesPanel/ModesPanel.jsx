@@ -19,7 +19,7 @@ const buttonsList = [
 ]
 
 const ModesPanel = ({activeMode, SetActiveMode}) => {
-    const OnClickHandler = (id) => {
+    const onClickHandler = (id) => {
         SetActiveMode(id);
     }
 
@@ -32,7 +32,7 @@ const ModesPanel = ({activeMode, SetActiveMode}) => {
             {buttonsList.map((item, index) => {
                 return <NavButton
                     key={"NavButton" + index}
-                    onClick={() => {OnClickHandler(index)}}
+                    onClick={() => {onClickHandler(index)}}
                     variant="contained"
                     sx={activeMode === index && {backgroundColor: "#6A0E0E"}}
                 >{item}</NavButton>

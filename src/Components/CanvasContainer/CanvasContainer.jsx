@@ -5,7 +5,7 @@ import {useState} from "react";
 
 
 const CanvasContainer = () => {
-    const SetActiveMode = (id) => {
+    const switchMode = (id) => {
         setActiveMode(id);
         //TODO: Реализовать логику переключения режимов
     }
@@ -13,7 +13,7 @@ const CanvasContainer = () => {
     const [activeMode, setActiveMode] = useState(0);
     return (
         <>
-            <ControlsPanel activeMode={activeMode} SetActiveMode={SetActiveMode}/>
+            <ControlsPanel activeMode={activeMode} SetActiveMode={switchMode}/>
             <Canvas/>
         </>
     )
