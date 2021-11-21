@@ -1,7 +1,8 @@
 import './App.css';
 import {makeStyles} from '@mui/styles';
 import CanvasContainer from "./Components/CanvasContainer/CanvasContainer";
-import LeftSideBar from "./components/LeftSideBar/LeftSideBar";
+import LeftSideBar from "./Components/LeftSideBar/LeftSideBar";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +30,6 @@ function App(props) {
             <div>
                 <LeftSideBar componentsList={props.componentsList}/>
             </div>
-            <div className={classes.gridContainerItems}></div>
             <div className={classes.gridContainerItems}>
                <CanvasContainer/>
             </div>
