@@ -12,16 +12,31 @@ const NavButton = styled(Button)({
     fontSize: 23,
 });
 
-const ModesPanel = (props) => {
+const buttonsList = [
+    "Canvas",
+    "HTML",
+    "CSS",
+]
+
+const ModesPanel = ({activeMode, SetActiveMode}) => {
+    const OnClickHandler = (id) => {
+        SetActiveMode(id);
+    }
+
     return (
         <Stack
             spacing={4}
             direction="row"
             sx={{m: '0 0 25px 50px'}}
         >
-            <NavButton variant="contained">Canvas</NavButton>
-            <NavButton variant="contained">HTML</NavButton>
-            <NavButton variant="contained">CSS</NavButton>
+            {buttonsList.map((item, index) => {
+                return <NavButton
+                    key={"NavButton" + index}
+                    onClick={() => {OnClickHandler(index)}}
+                    variant="contained"
+                    sx={activeMode === index && {backgroundColor: "#6A0E0E"}}
+                >{item}</NavButton>
+            })}
         </Stack>
     )
 }

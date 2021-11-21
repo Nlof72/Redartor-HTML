@@ -9,7 +9,7 @@ const ControlsPanel = (props) => {
             direction="row"
             justifyContent="space-between"
         >
-            <ModesPanel/>
+            <ModesPanel {...props}/>
             <ActionsPanel/>
         </Stack>
     )
