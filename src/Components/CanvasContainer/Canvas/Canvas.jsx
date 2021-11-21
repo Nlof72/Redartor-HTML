@@ -5,7 +5,7 @@ import {Box} from "@mui/material";
 
 const CanvasWrapper = styled(Box)({
     width: "95%",
-    height: "800px",            //TODO: Опредлить и выверить по высоте страницы
+    height: "89vh",            //TODO: Опредлить и выверить по высоте страницы
     margin: "auto",
     // Клетки
     background: "linear-gradient( #bbb, transparent 1px), linear-gradient( 90deg, #bbb, transparent 1px)",
