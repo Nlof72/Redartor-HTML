@@ -6,7 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CollapsedListItem from "./CollapsedListItem/CollapsedListItem";
-import ListItemIcon from "./ItemIcon/ItemIcon";
+import StarIcon from "@mui/icons-material/Star";
 
 
 function ListComponents(props) {
@@ -14,7 +14,6 @@ function ListComponents(props) {
     const handleClick = (prop, value) => {
         setOpen({...open, [prop]: value});
     };
-
 
 
     return (
@@ -25,8 +24,8 @@ function ListComponents(props) {
                     <ListItemButton onClick={() => {
                         handleClick(context.name, !open[context.name])
                     }}>
-                        <ListItemIcon type={context.icon}/>
-                        <ListItemText primary={context.name}/>
+                        {context.icon ? <img src={context.icon} alt=""/> : <StarIcon/>}
+                        <ListItemText primary={context.name} sx={{ml: 1}}/>
                         {open[context.name] ? <ExpandLess/> : <ExpandMore/>}
                     </ListItemButton>
 
@@ -36,8 +35,8 @@ function ListComponents(props) {
                                 return (<CollapsedListItem
                                     name={comp.name}
                                     icon={comp.icon}
-                                    key={"collapseListItem-"+index}
-                                id={index}/>)
+                                    key={"collapseListItem-" + index}
+                                    id={index}/>)
                             })}
                         </List>
                     </Collapse>

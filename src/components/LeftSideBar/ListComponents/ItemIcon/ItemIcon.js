@@ -5,7 +5,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 function ItemIcon(props) {
     return (
         <ListItemIcon>
-            {props.icon? props.icon : <StarIcon/>}
+            {props.icon ? <img src={props.icon} alt=""/> : <StarIcon/>}
         </ListItemIcon>
     );
 }
