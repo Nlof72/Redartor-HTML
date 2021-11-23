@@ -1,19 +1,20 @@
 import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import css from 'react-syntax-highlighter/dist/esm/languages/hljs/css'
+import html from 'react-syntax-highlighter/dist/esm/languages/hljs/htmlbars'
 import {githubGist} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import {styled} from "@mui/material/styles";
 import {Box, Typography} from "@mui/material";
 
-
 const CodeArea = (props) => {
-    const ADDED = [];
-    const REMOVED = [];
+    const ADDED = [1];
+    const REMOVED = [2];
     console.log(props.mode)
     return (
         <CodeAreaWrapper>
             <CodeHeader>{props.mode === 1 ? "HTML" : "CSS"}</CodeHeader>
             <SyntaxHighlighter
-                language={props.mode === 1 ? "htmlbar" : "css"}
+                language={props.mode === 1 ? html : css}
                 style={githubGist}
                 showLineNumbers='true'
                 wrapLongLines='true'
