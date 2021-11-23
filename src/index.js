@@ -17,11 +17,13 @@ const tempStoreComponents = [
                 name: "Кнопка",
                 type: "button",
                 icon: "",
+                razmetka: <button/>
             },
             {
                 name: "Поле ввода",
                 type: "input",
                 icon: "",
+                razmetka: <input/>
             }
         ],
     },
@@ -34,21 +36,25 @@ const tempStoreComponents = [
                 name: "Ссылка",
                 type: "link",
                 icon: "",
+                razmetka: <a/>
             },
             {
                 name: "Жирный текст",
                 type: "bold",
                 icon: "",
+                razmetka: <b>{"Text"}</b>
             },
             {
                 name: "Курсив",
                 type: "italic",
                 icon: "",
+                razmetka: <i>{"Text"}</i>
             },
             {
                 name: "Загаловок",
                 type: "heading",
                 icon: "",
+                razmetka: <h1>{"Text"}</h1>
             }
         ],
 
@@ -62,22 +68,20 @@ const tempStoreComponents = [
                 name: "Картинка",
                 type: "image",
                 icon: "",
+                razmetka: <img/>
             },
             {
                 name: "Видео",
                 type: "video",
                 icon: "",
+                razmetka: <video/>
             },
             {
                 name: "Аудио",
                 type: "audio",
                 icon: "",
-            },
-            {
-                name: "Видео",
-                type: "video",
-                icon: "",
-            },
+                razmetka: <audio/>
+            }
         ],
 
     },
@@ -90,6 +94,7 @@ const tempStoreComponents = [
                 name: "< div >",
                 type: "div",
                 icon: "",
+                razmetka: <div>{"AAAAAA"}</div>
             }
         ],
     },
@@ -102,11 +107,13 @@ const tempStoreComponents = [
                 name: "Список",
                 type: "list",
                 icon: "",
+                razmetka: <li><ul>{"строка"}</ul></li>
             },
             {
                 name: "Таблица",
                 type: "table",
                 icon: "",
+                razmetka: <table><td><tr>{"a"}</tr></td><td><tr>{"b"}</tr></td></table>
             }
         ],
 

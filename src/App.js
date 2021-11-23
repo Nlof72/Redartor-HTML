@@ -1,8 +1,9 @@
 import './App.css';
 import {makeStyles} from '@mui/styles';
-import CanvasContainer from "./components/CanvasContainer/CanvasContainer";
-import RightSideBar from "./components/RightSideBar/RightSideBar";
-import LeftSideBar from "./components/LeftSideBar/LeftSideBar";
+import LeftSideBar from "./Components/LeftSideBar/LeftSideBar";
+import RightSideBar from "./Components/RightSideBar/RightSideBar";
+import CanvasContainer from "./Components/CanvasContainer/CanvasContainer";
+
 
 
 const useStyles = makeStyles((theme) => ({

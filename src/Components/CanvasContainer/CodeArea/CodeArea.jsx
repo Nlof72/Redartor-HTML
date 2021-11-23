@@ -8,10 +8,10 @@ import {Box, Typography} from "@mui/material";
 const CodeArea = (props) => {
     const ADDED = [];
     const REMOVED = [];
-    console.log(props.mode)
+
     return (
         <CodeAreaWrapper>
-            <CodeHeader>{props.mode === 1 ? "HTML" : "CSS"}</CodeHeader>
+            {/*{   <CodeHeader>{props.mode === 1 ? "HTML" : "CSS"}</CodeHeader>}*/}
             <SyntaxHighlighter
                 language={props.mode === 1 ? "htmlbar" : "css"}
                 style={githubGist}
@@ -42,7 +42,7 @@ const CodeHeader = styled(Typography)({
 })
 
 const CodeAreaWrapper = styled(Box)({
-    fontSize: 24,
+    fontSize: 16,
     overflowY: "auto",
     height: "100%",
     color: "#333333"

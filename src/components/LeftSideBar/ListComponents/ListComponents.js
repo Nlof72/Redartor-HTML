@@ -36,8 +36,9 @@ function ListComponents(props) {
                                 return (<CollapsedListItem
                                     name={comp.name}
                                     icon={comp.icon}
+                                    razmetka={comp.razmetka}
                                     key={"collapseListItem-"+index}
-                                id={index}/>)
+                               />)
                             })}
                         </List>
                     </Collapse>
