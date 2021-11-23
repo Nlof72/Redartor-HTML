@@ -1,8 +1,8 @@
 import './App.css';
 import {makeStyles} from '@mui/styles';
-import CanvasContainer from "./Components/CanvasContainer/CanvasContainer";
-import LeftSideBar from "./Components/LeftSideBar/LeftSideBar";
-
+import CanvasContainer from "./components/CanvasContainer/CanvasContainer";
+import RightSideBar from "./components/RightSideBar/RightSideBar";
+import LeftSideBar from "./components/LeftSideBar/LeftSideBar";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -10,13 +10,18 @@ const useStyles = makeStyles((theme) => ({
         display: "grid",
         gridTemplateColumns: "2fr 8fr 2fr",
         backgroundColor: theme.palette.background.default,
-        width: "100vw",
-        height: "100vh",
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        overflow:"auto",
 
     },
-    // MOCK
-    gridContainerItems: {
-        border: "1px solid black",
+
+    canvasContainer: {
+        borderLeft: "1px solid black",
+        borderRight: "1px solid black",
     }
 }));
 
@@ -30,11 +35,11 @@ function App(props) {
             <div>
                 <LeftSideBar componentsList={props.componentsList}/>
             </div>
-            <div className={classes.gridContainerItems}>
-               <CanvasContainer/>
+            <div className={classes.canvasContainer}>
+                <CanvasContainer/>
             </div>
-            <div className={classes.gridContainerItems}>
-                // TODO: Реализовать правую боковую панель
+            <div>
+                <RightSideBar/>
             </div>
         </div>
     );

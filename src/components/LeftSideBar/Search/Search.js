@@ -7,7 +7,7 @@ import InputBase from "@mui/material/InputBase";
 
 const Search = styled("div")(({theme}) => ({
     position: "relative",
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: "30px",
     border: `1px solid ${theme.palette.primary.main}`,
     backgroundColor: theme.palette.background.default,
     width: "100%",

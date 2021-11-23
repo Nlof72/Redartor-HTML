@@ -16,7 +16,7 @@ export const theme = createTheme({
     images: {
         // TODO: Добавить ссылки на картинки, которые будут использоваться
     },
-    shape: {
-        borderRadius: '30px',
-    }
+    // shape: {
+    //     borderRadius: '30px',
+    // }
 });

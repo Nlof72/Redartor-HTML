@@ -5,8 +5,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import CollapsedListItem from "./CollapsedListItem";
-import ListItemIcon from "./ItemIcon";
+import CollapsedListItem from "./CollapsedListItem/CollapsedListItem";
+import ListItemIcon from "./ItemIcon/ItemIcon";
 
 
 function ListComponents(props) {
@@ -14,6 +14,8 @@ function ListComponents(props) {
     const handleClick = (prop, value) => {
         setOpen({...open, [prop]: value});
     };
+
+
 
     return (
         props.componentsList.map((context, index) => {
@@ -34,7 +36,8 @@ function ListComponents(props) {
                                 return (<CollapsedListItem
                                     name={comp.name}
                                     icon={comp.icon}
-                                    key={"collapseListItem-"+index}/>)
+                                    key={"collapseListItem-"+index}
+                                id={index}/>)
                             })}
                         </List>
                     </Collapse>
