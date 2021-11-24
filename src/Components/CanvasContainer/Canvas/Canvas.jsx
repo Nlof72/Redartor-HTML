@@ -4,9 +4,20 @@ import React from "react";
 
 
 
+const setText = (text) =>{
+    return (
+        <div>
+            {text}
+        </div>
+    )
+}
+
+
+
 const Canvas = () => {
     return (
         <>
+            <setText/>
         </>
     )
 }
