@@ -3,21 +3,9 @@ import React from "react";
 // import {Box} from "@mui/material";
 
 
-
-const setText = (text) =>{
-    return (
-        <div>
-            {text}
-        </div>
-    )
-}
-
-
-
 const Canvas = () => {
     return (
         <>
-            <setText/>
         </>
     )
 }
