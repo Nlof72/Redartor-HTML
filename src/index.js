@@ -111,7 +111,7 @@ const tempStoreComponents = [
         ],
 
     },
-]
+] //TODO:Вынести в отдельный файл, @Илья
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
