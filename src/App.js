@@ -1,6 +1,6 @@
 import './App.css';
 import {makeStyles} from '@mui/styles';
-import CanvasContainer from "./Components/CanvasContainer/CanvasContainer";
+import BodyContainer from "./Components/BodyContainer/BodyContainer";
 import RightSideBar from "./Components/RightSideBar/RightSideBar";
 import LeftSideBar from "./Components/LeftSideBar/LeftSideBar";
 
@@ -36,7 +36,7 @@ function App(props) {
                 <LeftSideBar componentsList={props.componentsList}/>
             </div>
             <div className={classes.canvasContainer}>
-                <CanvasContainer/>
+                <BodyContainer/>
             </div>
             <div>
                 <RightSideBar/>

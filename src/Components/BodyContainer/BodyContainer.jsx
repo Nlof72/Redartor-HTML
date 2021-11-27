@@ -20,7 +20,7 @@ const ModeRenderSelector = (currentMode, codeText) => {
     }
 }
 
-const CanvasContainer = () => {
+const BodyContainer = () => {
     const switchMode = (id) => {
         setActiveMode(id);
         //TODO: Реализовать логику переключения режимов
@@ -30,12 +30,12 @@ const CanvasContainer = () => {
     return (
         <>
             <ControlsPanel activeMode={activeMode} SetActiveMode={switchMode}/>
-            <CanvasWrapper>{ModeRenderSelector(activeMode)}</CanvasWrapper>
+            <BodyWrapper>{ModeRenderSelector(activeMode)}</BodyWrapper>
         </>
     )
 }
 
-const CanvasWrapper = styled(Box)({
+const BodyWrapper = styled(Box)({
     width: "95%",
     height: "89vh",
     margin: "auto",
@@ -103,4 +103,4 @@ p  {
 <body>
 `
 
-export default CanvasContainer;
+export default BodyContainer;

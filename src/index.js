@@ -28,6 +28,8 @@ import DivIcon from './Assets/Icons/32x32/Div.png'
 import OtherIcon from './Assets/Icons/32x32/Other.png'
 import TableIcon from './Assets/Icons/32x32/Table.png'
 import ListIcon from './Assets/Icons/32x32/List.png'
+import {Provider} from "react-redux";
+import store from "./Redux/Store";
 
 
 const tempStoreComponents = [
@@ -138,7 +140,9 @@ const tempStoreComponents = [
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
-        <App componentsList={tempStoreComponents}/>
+        <Provider store={store}>
+            <App componentsList={tempStoreComponents}/>
+        </Provider>
     </ThemeProvider>,
     document.getElementById('root')
 );
