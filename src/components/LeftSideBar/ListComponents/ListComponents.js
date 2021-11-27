@@ -7,6 +7,8 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CollapsedListItem from "./CollapsedListItem/CollapsedListItem";
 import StarIcon from "@mui/icons-material/Star";
+import {connect} from "react-redux";
+import {AddComponentToBlock} from "../../../Redux/CanvasReducer";
 
 
 function ListComponents(props) {
@@ -33,10 +35,11 @@ function ListComponents(props) {
                         <List component="div" disablePadding>
                             {context.components.map((comp, index) => {
                                 return (<CollapsedListItem
+                                    addToBlock = {()=>{props.AddComponentToBlock(0)}}
                                     name={comp.name}
                                     icon={comp.icon}
                                     razmetka={comp.razmetka}
-                                    key={"collapseListItem-"+index}
+                                    key={"collapseListItem-" + index}
                                 />)
                             })}
                         </List>
@@ -48,4 +51,10 @@ function ListComponents(props) {
     );
 }
 
-export default ListComponents;
+const StateToProps = () => {
+    return {}
+}
+
+export default connect(StateToProps, {
+    AddComponentToBlock,
+})(ListComponents);

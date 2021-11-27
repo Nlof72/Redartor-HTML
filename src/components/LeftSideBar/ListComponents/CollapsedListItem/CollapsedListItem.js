@@ -9,7 +9,7 @@ function CollapsedListItem(props) {
         // TODO: Передать разметку в CANVAS через редух Влада
     };
     return (
-        <ListItemButton sx={{pl: 4}}  onDoubleClick={()=>{handleDBClick(props.razmetka)}}>
+        <ListItemButton sx={{pl: 4}}  onClick={props.addToBlock}>
             <ListItemIcon icon={props.icon}/>
             <ListItemText primary={props.name}/>
         </ListItemButton>
