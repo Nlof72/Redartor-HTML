@@ -8,22 +8,24 @@ const BlockWrapper = styled(Box)({
     border: "1px solid lightgray",
 })
 
-const RenderComponent = (type) => {
-  switch (type) {
-      case "button":
-          return <Button variant="contained">Mock</Button>
-      default:
-          return null;
-  }
+const RenderComponent = (component) => {
+    const AddedComponent = component.type;
+    // return ( <AddedComponent style={component.css}> Hello world <AddedComponent/> );
 }
 
 const BlockItem = (props) => {
     return (
         <BlockWrapper>
-            <IconButton onClick={props.deleteBlock} color="default" aria-label="add new block to canvas" sx={{float: "right"}}>
+            <IconButton onClick={props.deleteBlock} color="default" aria-label="add new block to canvas"
+                        sx={{float: "right"}}>
                 <ClearIcon fontSize="little"/>
             </IconButton>
-            {props.blockBody.map((component)=>(RenderComponent(component.type)))}
+            {props.blockBody.map((component) => {
+                debugger;
+                    const AddedComponent = component.componentType;
+                 return ( <AddedComponent style={component.css}> Hello world </AddedComponent> );
+                }
+            )}
         </BlockWrapper>
     )
 }

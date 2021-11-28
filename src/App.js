@@ -33,7 +33,7 @@ function App(props) {
     return (
         <div className={classes.gridContainer}>
             <div>
-                <LeftSideBar componentsList={props.componentsList}/>
+                <LeftSideBar/>
             </div>
             <div className={classes.canvasContainer}>
                 <BodyContainer/>

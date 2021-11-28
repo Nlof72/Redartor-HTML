@@ -9,17 +9,22 @@ import CollapsedListItem from "./CollapsedListItem/CollapsedListItem";
 import StarIcon from "@mui/icons-material/Star";
 import {connect} from "react-redux";
 import {AddComponentToBlock} from "../../../Redux/CanvasReducer";
+import DefaultComponents from "../../../Data/ComponentsData";
+import {useDispatch} from "react-redux";
 
 
 function ListComponents(props) {
     const [open, setOpen] = React.useState({});
+    const dispatch = useDispatch();
+
     const handleClick = (prop, value) => {
         setOpen({...open, [prop]: value});
     };
 
+    let componentsList = DefaultComponents;
 
     return (
-        props.componentsList.map((context, index) => {
+        componentsList.map((context, index) => {
             return (
                 <List key={index}>
 
@@ -34,11 +39,13 @@ function ListComponents(props) {
                     <Collapse key={index} in={open[context.name]} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             {context.components.map((comp, index) => {
+
                                 return (<CollapsedListItem
-                                    addToBlock = {()=>{props.AddComponentToBlock(0)}}
+                                    addToBlock = {(type)=>{ dispatch(AddComponentToBlock(type, 0))}}
                                     name={comp.name}
                                     icon={comp.icon}
                                     razmetka={comp.razmetka}
+                                    type={comp.type}
                                     key={"collapseListItem-" + index}
                                 />)
                             })}
@@ -51,10 +58,4 @@ function ListComponents(props) {
     );
 }
 
-const StateToProps = () => {
-    return {}
-}
-
-export default connect(StateToProps, {
-    AddComponentToBlock,
-})(ListComponents);
+export default ListComponents;

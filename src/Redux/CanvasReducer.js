@@ -5,11 +5,10 @@ const ADD_COMPONENT_TO_BLOCK = "ADD-COMPONENT-TO-BLOCK";
 
 
 let initialState = [
-    [{type:"button"}],
+    [],
 ]
 
 const CanvasReducer = (state = initialState, action) => {
-    debugger;
     switch (action.type) {
         case CLEAR:
 
@@ -17,14 +16,24 @@ const CanvasReducer = (state = initialState, action) => {
 
         case ADD_BLOCK:
             return [...state, [Math.random()]]; // Рандом для отладки. Убрать.
+
         case DELETE_BLOCK:
             return [...state.slice(0, action.index), ...state.slice(action.index + 1)];
 
         case ADD_COMPONENT_TO_BLOCK:
             return state.map((block) => {
-
                 if (state.indexOf(block) === action.index)
-                    return [...block, {type:"button"}];
+                    return [...block,
+                        {
+                            id: `5224651a3e0b`,
+                            componentType: action.componentType,
+                            css: {
+                                cursor: "pointer",
+                                background: "white"
+                            },
+                            orderId: 1,
+                            parentId: 0
+                        }];
                 else
                     return block;
             })
@@ -44,9 +53,8 @@ export const ClearCanvas = () => {
 export const DeleteBlock = (blockIndex) => {
     return {type: DELETE_BLOCK, index: blockIndex}
 }
-export const AddComponentToBlock = (blockIndex) => {
-    debugger;
-    return {type: ADD_COMPONENT_TO_BLOCK, index: blockIndex}
+export const AddComponentToBlock = (componentType, blockIndex) => {
+    return {type: ADD_COMPONENT_TO_BLOCK, index: blockIndex, componentType: componentType}
 }
 
 
