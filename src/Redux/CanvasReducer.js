@@ -12,11 +12,25 @@ let initialState = {
     currentBlock: 0
 }
 
+const CreateComponentByParams = (action, state) => {
+    let newComponent = {
+        id: uuidv4(),
+        componentType: action.componentType,
+        css: action.componentCss,
+        orderId: state.length + 1,
+        parentId: 0
+    };
+
+    if (action.componentSrc !== undefined)
+        newComponent["src"] = action.componentSrc;
+
+    return newComponent;
+}
+
 
 const CanvasReducer = (state = initialState, action) => {
     switch (action.type) {
         case CLEAR:
-
             return {...state, canvas: []};
 
         case ADD_BLOCK:
@@ -29,26 +43,15 @@ const CanvasReducer = (state = initialState, action) => {
             };
 
         case ADD_COMPONENT_TO_BLOCK:
-            return state.canvas.map((block) => {
-                if (state.canvas.indexOf(block) === action.index) {
-
-                    let newComponent = {
-                        id: uuidv4(),
-                        componentType: action.componentType,
-                        css: action.componentCss,
-                        orderId: state.length + 1,
-                        parentId: 0
-                    };
-
-                    if (action.componentSrc !== undefined)
-                        newComponent["src"] = action.componentSrc;
-
-                    let copyCanvas = [...state.canvas];
-                    copyCanvas[action.index].push(newComponent);
-                    return {...state, canvas:[...copyCanvas]};
-                } else
-                    return state;
-            })
+            return {
+                ...state, canvas: state.canvas.map(block => {
+                    if (state.canvas.indexOf(block) === action.index) {
+                        return [...block, CreateComponentByParams(action, state)];
+                    } else {
+                        return block
+                    }
+                })
+            }
 
         case CHANGE_COMPONENT_IN_BLOCK:
             break;
@@ -85,6 +88,9 @@ export const SelectCurrentBlock = (componentID, blockIndex, componentParams) => 
 export const ChangeComponentInBlock = (componentID, blockIndex, componentParams) => {
     return {type: CHANGE_COMPONENT_IN_BLOCK, index: blockIndex, componentParams: componentParams}
 }
+
+
+
 
 
 export default CanvasReducer;

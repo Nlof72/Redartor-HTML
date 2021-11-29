@@ -10,8 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 const Canvas = (props) => {
     const dispatch = useDispatch();
     const canvasBody = useSelector((state) => state.canvasData);
-    console.log(canvasBody);
-    debugger;
+
     return (
         <CanvasWrapper>
             {
@@ -20,7 +19,7 @@ const Canvas = (props) => {
                         key={'BlockKey-' + index}
                         blockBody={block}
                         deleteBlock={() => {dispatch(DeleteBlock(index))}}
-                        selectBlock={() => {alert(index);}}
+                        // selectBlock={() => {dispatch(SelectCurrentBlock(index))}}
                     />
                 })
             }
