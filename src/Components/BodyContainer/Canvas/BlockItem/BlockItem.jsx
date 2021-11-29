@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {styled} from "@mui/material/styles";
 import {Box, IconButton} from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
@@ -11,7 +11,7 @@ const BlockWrapper = styled(Box)({
 
 const BlockItem = (props) => {
     return (
-        <BlockWrapper onClick={props.selectBlock}>
+        <BlockWrapper>
             <IconButton onClick={props.deleteBlock} color="default" aria-label="add new block to canvas"
                         sx={{float: "right"}}>
                 <ClearIcon fontSize="little"/>
@@ -19,8 +19,8 @@ const BlockItem = (props) => {
 
             {props.blockBody.map((component) => {
                     const AddedComponent = component.componentType;
-                    if (["input", "a"].includes(component.componentType))
-                        return (<AddedComponent style={component.css} href={component.href} src={component.src}/>);
+                    if (["input"].includes(component.componentType))
+                        return (<AddedComponent style={component.css} src={component.src}/>);
                     else
                         return (
                             <AddedComponent style={component.css} href={component.href} src={component.src}>Hello

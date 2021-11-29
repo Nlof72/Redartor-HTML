@@ -51,7 +51,7 @@ const DefaultComponents = [
                 icon: LinkIcon,
                 css: {
                 },
-                src: "#"
+                href: "#"
             },
             {
                 name: "Жирный текст",
