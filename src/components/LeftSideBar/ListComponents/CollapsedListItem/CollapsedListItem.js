@@ -5,11 +5,13 @@ import ListItemText from '@mui/material/ListItemText';
 
 
 function CollapsedListItem(props) {
-    let handleDBClick = (razmetka) => {
-        // TODO: Передать разметку в CANVAS через редух Влада
-    };
+    const addToBlock = (type, css, src) => {
+        props.addToBlock(type, css, src);
+    }
     return (
-        <ListItemButton sx={{pl: 4}}  onClick={props.addToBlock}>
+        <ListItemButton sx={{pl: 4}} onClick={() => {
+            addToBlock(props.type, props.css, props.src)
+        }}>
             <ListItemIcon icon={props.icon}/>
             <ListItemText primary={props.name}/>
         </ListItemButton>

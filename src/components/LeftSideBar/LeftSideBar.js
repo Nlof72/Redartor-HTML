@@ -19,8 +19,6 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: "93vh",
 
     }
-
-
 }));
 
 
@@ -34,7 +32,7 @@ function LeftSideBar(props) {
                 <Search/>
             </div>
             <div className={classes.componentsContainer} >
-                <ListComponents componentsList={props.componentsList}/>
+                <ListComponents/>
             </div>
 
         </div>

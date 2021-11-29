@@ -7,19 +7,23 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CollapsedListItem from "./CollapsedListItem/CollapsedListItem";
 import StarIcon from "@mui/icons-material/Star";
-import {connect} from "react-redux";
 import {AddComponentToBlock} from "../../../Redux/CanvasReducer";
+import DefaultComponents from "../../../Data/ComponentsData";
+import {useDispatch} from "react-redux";
 
 
 function ListComponents(props) {
     const [open, setOpen] = React.useState({});
+    const dispatch = useDispatch();
+
     const handleClick = (prop, value) => {
         setOpen({...open, [prop]: value});
     };
 
+    let componentsList = DefaultComponents;
 
     return (
-        props.componentsList.map((context, index) => {
+        componentsList.map((context, index) => {
             return (
                 <List key={index}>
 
@@ -27,6 +31,7 @@ function ListComponents(props) {
                         handleClick(context.name, !open[context.name])
                     }}>
                         {context.icon ? <img src={context.icon} alt=""/> : <StarIcon/>}
+
                         <ListItemText primary={context.name} sx={{ml: 1}}/>
                         {open[context.name] ? <ExpandLess/> : <ExpandMore/>}
                     </ListItemButton>
@@ -35,10 +40,12 @@ function ListComponents(props) {
                         <List component="div" disablePadding>
                             {context.components.map((comp, index) => {
                                 return (<CollapsedListItem
-                                    addToBlock = {()=>{props.AddComponentToBlock(0)}}
+                                    addToBlock={() => {
+                                        dispatch(AddComponentToBlock(comp, 0))
+                                    }}
+                                    // Мб передавать сразу comp, а в CollapsedListItem доставать нужное?
                                     name={comp.name}
                                     icon={comp.icon}
-                                    razmetka={comp.razmetka}
                                     key={"collapseListItem-" + index}
                                 />)
                             })}
@@ -51,10 +58,4 @@ function ListComponents(props) {
     );
 }
 
-const StateToProps = () => {
-    return {}
-}
-
-export default connect(StateToProps, {
-    AddComponentToBlock,
-})(ListComponents);
+export default ListComponents;

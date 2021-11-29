@@ -5,11 +5,16 @@ import html from 'react-syntax-highlighter/dist/esm/languages/hljs/htmlbars'
 import {githubGist} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import {styled} from "@mui/material/styles";
 import {Box, Typography} from "@mui/material";
+import {useSelector} from "react-redux";
+import {getCSS, getHTML} from "../../../Utils/Helpers/ConvertToMarkup";
+
+
 
 const CodeArea = (props) => {
-    const ADDED = [1];
-    const REMOVED = [2];
-    console.log(props.mode)
+    let canvasData = useSelector((state) => state.canvasData);
+    let HTML = getHTML(canvasData.canvas);
+    let CSS = getCSS(canvasData.canvas);
+
     return (
         <CodeAreaWrapper>
             <CodeHeader>{props.mode === 1 ? "HTML" : "CSS"}</CodeHeader>
@@ -18,17 +23,8 @@ const CodeArea = (props) => {
                 style={githubGist}
                 showLineNumbers='true'
                 wrapLongLines='true'
-                lineProps={lineNumber => {
-                    let style = {display: 'block'};
-                    if (ADDED.includes(lineNumber)) {
-                        style.backgroundColor = '#dbffdb';
-                    } else if (REMOVED.includes(lineNumber)) {
-                        style.backgroundColor = '#ffecec';
-                    }
-                    return {style};
-                }}
             >
-                {props.code}
+                {props.mode === 1 ? HTML : CSS}
             </SyntaxHighlighter>
         </CodeAreaWrapper>
     );
