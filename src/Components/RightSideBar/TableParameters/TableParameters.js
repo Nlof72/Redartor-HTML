@@ -10,19 +10,20 @@ import {
     styled
 } from "@mui/material";
 
-
-function TableParametrs() {
+// АХТУНГ КОСТЫЛИ
+function TableParameters(props) {
+    console.log(props)
     const StyledTableCell = styled(TableCell)(({theme}) => ({
         [`&.${tableCellClasses.body}`]: {
             fontSize: 16,
         },
     }));
 
-    const StyledHeader= styled("div")(({theme}) => ({
+    const StyledHeader = styled("div")(({theme}) => ({
         backgroundColor: theme.palette.primary.main,
         textAlign: "center",
-        color:"white",
-        padding:"16px 0",
+        color: "white",
+        padding: "16px 0",
         fontSize: 23,
     }));
 
@@ -31,12 +32,12 @@ function TableParametrs() {
     function createData(name, field) {
         return {name, field};
     }
-
-    const rows = [
-        createData('Background', <input/>),
-        createData('Text', <input/>),
-
-    ];
+    let rows = null;
+    if (props.comProps) {
+         rows = Object.entries(props.comProps)
+        rows = rows.map((value => {return createData(value[0], <input value={value[1]}/>)}))
+    }
+    console.log(rows)
 
     return (
         <div>
@@ -48,7 +49,7 @@ function TableParametrs() {
                     <TableHead>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {rows!==null && rows.map((row) => (
                             <StyledTableRow key={row.name}>
                                 <StyledTableCell> {row.name} </StyledTableCell>
                                 <StyledTableCell align="center">{row.field}</StyledTableCell>
@@ -61,4 +62,4 @@ function TableParametrs() {
     );
 }
 
-export default TableParametrs;
+export default TableParameters;

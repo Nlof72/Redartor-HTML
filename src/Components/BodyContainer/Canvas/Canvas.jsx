@@ -17,6 +17,7 @@ const Canvas = (props) => {
                 canvasBody.canvas.map((block, index) => {
                     return <BlockItem
                         key={'BlockKey-' + index}
+                        blockIndex={index}
                         blockBody={block}
                         deleteBlock={() => {dispatch(DeleteBlock(index))}}
                         // selectBlock={() => {dispatch(SelectCurrentBlock(index))}}
