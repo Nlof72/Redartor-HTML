@@ -11,7 +11,7 @@ const BlockWrapper = styled(Box)({
 
 const BlockItem = (props) => {
     return (
-        <BlockWrapper>
+        <BlockWrapper onClick={props.selectBlock}>
             <IconButton onClick={props.deleteBlock} color="default" aria-label="add new block to canvas"
                         sx={{float: "right"}}>
                 <ClearIcon fontSize="little"/>
@@ -50,7 +50,6 @@ const BlockItem = (props) => {
                             return (<AddedComponent style={component.css}> Hello world! </AddedComponent>);
                             break;
                     }
-
                 }
             )}
         </BlockWrapper>

@@ -10,14 +10,18 @@ import {useDispatch, useSelector} from "react-redux";
 const Canvas = (props) => {
     const dispatch = useDispatch();
     const canvasBody = useSelector((state) => state.canvasData);
-
+    console.log(canvasBody);
+    debugger;
     return (
         <CanvasWrapper>
             {
-                canvasBody.map((block, index) => {
-                    return <BlockItem key={'BlockKey-' + index} blockBody={block} deleteBlock={() => {
-                        dispatch(DeleteBlock(index))
-                    }}/>
+                canvasBody.canvas.map((block, index) => {
+                    return <BlockItem
+                        key={'BlockKey-' + index}
+                        blockBody={block}
+                        deleteBlock={() => {dispatch(DeleteBlock(index))}}
+                        selectBlock={() => {alert(index);}}
+                    />
                 })
             }
             <IconButton onClick={() => {
