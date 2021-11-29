@@ -6,24 +6,27 @@ const DELETE_BLOCK = "DELETE-BLOCK";
 const CLEAR = "CLEAR";
 const ADD_COMPONENT_TO_BLOCK = "ADD-COMPONENT-TO-BLOCK";
 const CHANGE_COMPONENT_IN_BLOCK = "CHANGE-COMPONENT-IN-BLOCK";
+const SELECT_CURRENT_COMPONENT = "SELECT-CURRENT-COMPONENT";
 
 let initialState = {
     canvas: [[]],
-    currentBlock: 0
+    currentBlock: 0,
+    selectedComponent: null,
 }
 
-const CreateComponentByParams = (action, state) => {
+const CreateComponentByParams = (componentData, state) => {
     let newComponent = {
         id: uuidv4(),
-        componentType: action.componentType,
-        css: action.componentCss,
-        orderId: state.length + 1,
-        parentId: 0
+        orderId: state.canvas[state.currentBlock].length + 1,
+        parentId: 0,
+        componentType: componentData.type,
+        css: componentData.css,
+        body: componentData.body
     };
 
-    if (action.componentSrc !== undefined)
-        newComponent["src"] = action.componentSrc;
-
+    if (componentData.src !== undefined)
+        newComponent["html"] = {...newComponent["html"], src: componentData.src};
+    debugger;
     return newComponent;
 }
 
@@ -45,13 +48,14 @@ const CanvasReducer = (state = initialState, action) => {
         case ADD_COMPONENT_TO_BLOCK:
             return {
                 ...state, canvas: state.canvas.map(block => {
-                    if (state.canvas.indexOf(block) === action.index) {
-                        return [...block, CreateComponentByParams(action, state)];
+                    if (state.canvas.indexOf(block) === action.blockIndex) {
+                        return [...block, CreateComponentByParams(action.component, state)];
                     } else {
                         return block
                     }
                 })
             }
+
 
         case CHANGE_COMPONENT_IN_BLOCK:
             break;
@@ -71,14 +75,17 @@ export const ClearCanvas = () => {
 export const DeleteBlock = (blockIndex) => {
     return {type: DELETE_BLOCK, index: blockIndex}
 }
-export const AddComponentToBlock = (componentType, componentCss, componentSrc, blockIndex) => {
+export const AddComponentToBlock = (componentData, blockIndex) => {
     return {
         type: ADD_COMPONENT_TO_BLOCK,
-        index: blockIndex,
-        componentType: componentType,
-        componentCss: componentCss,
-        componentSrc: componentSrc
+        blockIndex: blockIndex,
+        component: componentData
     }
+}
+
+export const SelectCurrentComponent = (id) => {
+    return {type: SELECT_CURRENT_COMPONENT, id: id}
+
 }
 
 export const SelectCurrentBlock = (componentID, blockIndex, componentParams) => {
@@ -88,9 +95,6 @@ export const SelectCurrentBlock = (componentID, blockIndex, componentParams) => 
 export const ChangeComponentInBlock = (componentID, blockIndex, componentParams) => {
     return {type: CHANGE_COMPONENT_IN_BLOCK, index: blockIndex, componentParams: componentParams}
 }
-
-
-
 
 
 export default CanvasReducer;

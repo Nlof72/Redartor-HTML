@@ -29,7 +29,9 @@ const DefaultComponents = [
                 icon: ButtonIcon,
                 css: {
                     cursor: "pointer",
-                }
+                    width: 200,
+                },
+                body: "Button"
             },
             {
                 name: "Поле ввода",

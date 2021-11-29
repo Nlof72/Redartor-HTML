@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {styled} from "@mui/material/styles";
 import {Box, IconButton} from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
+import ComponentItem from "./ComponentItem/ComponentItem";
 
 const BlockWrapper = styled(Box)({
     minHeight: "15%",
@@ -18,9 +19,11 @@ const BlockItem = (props) => {
             </IconButton>
 
             {props.blockBody.map((component) => {
+                    return <ComponentItem {...component}/>
+
                     const AddedComponent = component.componentType;
-                    if (["input"].includes(component.componentType))
-                        return (<AddedComponent style={component.css} src={component.src}/>);
+                    if (["input", "img"].includes(component.componentType))
+                        return (<AddedComponent style={component.css} href={component.href} src={component.src}/>);
                     else
                         return (
                             <AddedComponent style={component.css} href={component.href} src={component.src}>Hello
