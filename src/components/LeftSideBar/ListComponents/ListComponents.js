@@ -9,16 +9,17 @@ import CollapsedListItem from "./CollapsedListItem/CollapsedListItem";
 import StarIcon from "@mui/icons-material/Star";
 import {AddComponentToBlock} from "../../../Redux/CanvasReducer";
 import DefaultComponents from "../../../Data/ComponentsData";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 
 function ListComponents(props) {
     const [open, setOpen] = React.useState({});
     const dispatch = useDispatch();
-
+    const canvasBody = useSelector((state) => state.canvasData);//костыль
     const handleClick = (prop, value) => {
         setOpen({...open, [prop]: value});
     };
+
 
     let componentsList = DefaultComponents;
 
@@ -41,9 +42,8 @@ function ListComponents(props) {
                             {context.components.map((comp, index) => {
                                 return (<CollapsedListItem
                                     addToBlock={() => {
-                                        dispatch(AddComponentToBlock(comp, 0))
+                                        dispatch(AddComponentToBlock(comp, canvasBody.currentBlock))
                                     }}
-                                    // Мб передавать сразу comp, а в CollapsedListItem доставать нужное?
                                     name={comp.name}
                                     icon={comp.icon}
                                     key={"collapseListItem-" + index}
