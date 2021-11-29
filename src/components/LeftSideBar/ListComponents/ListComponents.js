@@ -31,6 +31,7 @@ function ListComponents(props) {
                         handleClick(context.name, !open[context.name])
                     }}>
                         {context.icon ? <img src={context.icon} alt=""/> : <StarIcon/>}
+
                         <ListItemText primary={context.name} sx={{ml: 1}}/>
                         {open[context.name] ? <ExpandLess/> : <ExpandMore/>}
                     </ListItemButton>
@@ -39,13 +40,12 @@ function ListComponents(props) {
                         <List component="div" disablePadding>
                             {context.components.map((comp, index) => {
                                 return (<CollapsedListItem
-                                    addToBlock = {(type, css, src)=>{ dispatch(AddComponentToBlock(type, css, src,0))}}
+                                    addToBlock={() => {
+                                        dispatch(AddComponentToBlock(comp, 0))
+                                    }}
                                     // Мб передавать сразу comp, а в CollapsedListItem доставать нужное?
                                     name={comp.name}
                                     icon={comp.icon}
-                                    type={comp.type}
-                                    css={comp.css}
-                                    src={comp.src}
                                     key={"collapseListItem-" + index}
                                 />)
                             })}
