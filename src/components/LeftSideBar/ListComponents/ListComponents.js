@@ -7,7 +7,6 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CollapsedListItem from "./CollapsedListItem/CollapsedListItem";
 import StarIcon from "@mui/icons-material/Star";
-import {connect} from "react-redux";
 import {AddComponentToBlock} from "../../../Redux/CanvasReducer";
 import DefaultComponents from "../../../Data/ComponentsData";
 import {useDispatch} from "react-redux";
@@ -39,13 +38,14 @@ function ListComponents(props) {
                     <Collapse key={index} in={open[context.name]} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             {context.components.map((comp, index) => {
-
                                 return (<CollapsedListItem
-                                    addToBlock = {(type)=>{ dispatch(AddComponentToBlock(type, 0))}}
+                                    addToBlock = {(type, css, src)=>{ dispatch(AddComponentToBlock(type, css, src,0))}}
+                                    // Мб передавать сразу comp, а в CollapsedListItem доставать нужное?
                                     name={comp.name}
                                     icon={comp.icon}
-                                    razmetka={comp.razmetka}
                                     type={comp.type}
+                                    css={comp.css}
+                                    src={comp.src}
                                     key={"collapseListItem-" + index}
                                 />)
                             })}

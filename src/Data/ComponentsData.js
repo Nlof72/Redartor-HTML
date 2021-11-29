@@ -27,11 +27,16 @@ const DefaultComponents = [
                 name: "Кнопка",
                 type: "button",
                 icon: ButtonIcon,
+                css: {
+                    cursor: "pointer",
+                }
             },
             {
                 name: "Поле ввода",
                 type: "input",
                 icon: InputIcon,
+                css: {
+                }
             }
         ],
     },
@@ -42,23 +47,34 @@ const DefaultComponents = [
         components: [
             {
                 name: "Ссылка",
-                type: "link",
+                type: "a",
                 icon: LinkIcon,
+                css: {
+                },
+                src: "#"
             },
             {
                 name: "Жирный текст",
                 type: "b",
                 icon: BoldIcon,
+                css: {
+                }
             },
             {
                 name: "Курсив",
                 type: "i",
                 icon: ItalicIcon,
+                css: {
+
+                }
             },
             {
                 name: "Заголовок",
                 type: "h1",
                 icon: HeadingIcon,
+                css: {
+
+                }
             }
         ],
 
@@ -72,21 +88,38 @@ const DefaultComponents = [
                 name: "Картинка",
                 type: "img",
                 icon: ImageIcon,
+                css: {
+                    width: "50px",
+                    height: "50px",
+                },
+                src: "https://memepedia.ru/wp-content/uploads/2019/03/u-suka-10.jpg"
             },
             {
                 name: "Видео",
                 type: "video",
                 icon: VideoIcon,
+                css: {
+
+                },
+                src: ""
             },
             {
                 name: "Аудио",
                 type: "audio",
                 icon: AudioIcon,
+                css: {
+
+                },
+                src: ""
             },
             {
                 name: "Контейнер медиа",
                 type: "iframe",
                 icon: ContainerIcon,
+                css: {
+
+                },
+                src: ""
             },
         ],
 
@@ -100,6 +133,11 @@ const DefaultComponents = [
                 name: "Блок",
                 type: "div",
                 icon: DivIcon,
+                css: {
+                    border: "1px solid black",
+                    width: "200px",
+                    height: "200px"
+                }
             }
         ],
     },
@@ -110,13 +148,19 @@ const DefaultComponents = [
         components: [
             {
                 name: "Список",
-                type: "list",
+                type: "ul",
                 icon: ListIcon,
+                css: {
+
+                }
             },
             {
                 name: "Таблица",
                 type: "table",
                 icon: TableIcon,
+                css: {
+                    border: "1px solid black"
+                }
             }
         ],
 

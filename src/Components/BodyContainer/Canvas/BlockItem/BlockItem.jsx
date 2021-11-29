@@ -1,6 +1,6 @@
 import React from "react";
 import {styled} from "@mui/material/styles";
-import {Box, Button, IconButton} from "@mui/material";
+import {Box, IconButton} from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
 
 const BlockWrapper = styled(Box)({
@@ -8,10 +8,6 @@ const BlockWrapper = styled(Box)({
     border: "1px solid lightgray",
 })
 
-const RenderComponent = (component) => {
-    const AddedComponent = component.type;
-    // return ( <AddedComponent style={component.css}> Hello world <AddedComponent/> );
-}
 
 const BlockItem = (props) => {
     return (
@@ -21,9 +17,40 @@ const BlockItem = (props) => {
                 <ClearIcon fontSize="little"/>
             </IconButton>
             {props.blockBody.map((component) => {
-                debugger;
                     const AddedComponent = component.componentType;
-                 return ( <AddedComponent style={component.css}> Hello world </AddedComponent> );
+                    switch (component.componentType) {  // мне это очень не нравится (Настя)
+                        case "input":
+                            return (<AddedComponent style={component.css}/>);
+                            break;
+                        case "img":
+                            return (<AddedComponent style={component.css} src={component.src}/>);
+                            break;
+                        case "a":
+                            return (
+                                <AddedComponent style={component.css} href={component.src}>Hello world! </AddedComponent>);
+                            break;
+                        case "list":
+                            return (<AddedComponent style={component.css}>
+                                <li>Text</li>
+                            </AddedComponent>);
+                            break;
+                        case "table":
+                            return (<AddedComponent style={component.css}>
+                                <tr>
+                                    <td>Text</td>
+                                    <td>Text</td>
+                                </tr>
+                                <tr>
+                                    <td>Text</td>
+                                    <td>Text</td>
+                                </tr>
+                            </AddedComponent>);
+                            break;
+                        default:
+                            return (<AddedComponent style={component.css}> Hello world! </AddedComponent>);
+                            break;
+                    }
+
                 }
             )}
         </BlockWrapper>
