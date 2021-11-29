@@ -53,14 +53,16 @@ const DefaultComponents = [
                 icon: LinkIcon,
                 css: {
                 },
-                href: "#"
+                href: "#",
+                body: "Hello world!"
             },
             {
                 name: "Жирный текст",
                 type: "b",
                 icon: BoldIcon,
                 css: {
-                }
+                },
+                body: "Hello world!"
             },
             {
                 name: "Курсив",
@@ -68,7 +70,8 @@ const DefaultComponents = [
                 icon: ItalicIcon,
                 css: {
 
-                }
+                },
+                body: "Hello world!"
             },
             {
                 name: "Заголовок",
@@ -76,7 +79,8 @@ const DefaultComponents = [
                 icon: HeadingIcon,
                 css: {
 
-                }
+                },
+                body: "Hello world!"
             }
         ],
 
@@ -139,7 +143,8 @@ const DefaultComponents = [
                     border: "1px solid black",
                     width: "200px",
                     height: "200px"
-                }
+                },
+                body: "Hello world!"
             }
         ],
     },

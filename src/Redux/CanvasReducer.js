@@ -26,6 +26,8 @@ const CreateComponentByParams = (componentData, state) => {
 
     if (componentData.src !== undefined)
         newComponent["html"] = {...newComponent["html"], src: componentData.src};
+    if (componentData.href !== undefined)
+        newComponent["html"] = {...newComponent["html"], href: componentData.href};
     debugger;
     return newComponent;
 }

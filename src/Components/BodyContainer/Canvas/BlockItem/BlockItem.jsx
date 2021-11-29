@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {styled} from "@mui/material/styles";
 import {Box, IconButton} from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
@@ -19,17 +19,8 @@ const BlockItem = (props) => {
             </IconButton>
 
             {props.blockBody.map((component) => {
-                    return <ComponentItem {...component}/>
-
-                    const AddedComponent = component.componentType;
-                    if (["input", "img"].includes(component.componentType))
-                        return (<AddedComponent style={component.css} href={component.href} src={component.src}/>);
-                    else
-                        return (
-                            <AddedComponent style={component.css} href={component.href} src={component.src}>Hello
-                                world!</AddedComponent>);
-                }
-            )}
+                return (<ComponentItem {...component}/>);
+            })}
         </BlockWrapper>
     )
 }

@@ -19,7 +19,6 @@ const Canvas = (props) => {
                         key={'BlockKey-' + index}
                         blockBody={block}
                         deleteBlock={() => {dispatch(DeleteBlock(index))}}
-                        // selectBlock={() => {dispatch(SelectCurrentBlock(index))}}
                     />
                 })
             }
