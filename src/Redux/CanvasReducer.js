@@ -1,6 +1,5 @@
 import {v4 as uuidv4} from 'uuid';
 
-
 const ADD_BLOCK = "ADD-BLOCK";
 const DELETE_BLOCK = "DELETE-BLOCK";
 const CLEAR = "CLEAR";
@@ -11,7 +10,7 @@ const SELECT_CURRENT_COMPONENT = "SELECT-CURRENT-COMPONENT";
 let initialState = {
     canvas: [[]],
     currentBlock: 0,
-    selectedComponent: null,
+    selectedComponentId: null,
 }
 
 const CreateComponentByParams = (componentData, state) => {
@@ -36,7 +35,7 @@ const CreateComponentByParams = (componentData, state) => {
 const CanvasReducer = (state = initialState, action) => {
     switch (action.type) {
         case CLEAR:
-            return {...state, canvas: []};
+            return {...state, canvas: [], currentBlock: null, selectedComponentId: null};
 
         case ADD_BLOCK:
             return {...state, canvas: [...state.canvas, []]};
@@ -44,7 +43,9 @@ const CanvasReducer = (state = initialState, action) => {
         case DELETE_BLOCK:
             return {
                 ...state,
-                canvas: [...state.canvas.slice(0, action.index), ...state.canvas.slice(action.index + 1)]
+                canvas: [...state.canvas.slice(0, action.index), ...state.canvas.slice(action.index + 1)],
+                currentBlock: null,
+                selectedComponentId: null
             };
 
         case ADD_COMPONENT_TO_BLOCK:
@@ -58,9 +59,11 @@ const CanvasReducer = (state = initialState, action) => {
                 })
             }
 
+        case SELECT_CURRENT_COMPONENT:
+            return {...state, selectedComponentId: action.id, currentBlock: action.blockIndex}
 
         case CHANGE_COMPONENT_IN_BLOCK:
-            break;
+            return {...state, currentBlock: action.blockIndex}
 
         default:
             return state;
@@ -85,13 +88,12 @@ export const AddComponentToBlock = (componentData, blockIndex) => {
     }
 }
 
-export const SelectCurrentComponent = (id) => {
-    return {type: SELECT_CURRENT_COMPONENT, id: id}
-
+export const SelectCurrentComponent = (id, blockIndex) => {
+    return {type: SELECT_CURRENT_COMPONENT, blockIndex: blockIndex, id: id}
 }
 
-export const SelectCurrentBlock = (componentID, blockIndex, componentParams) => {
-    return {type: CHANGE_COMPONENT_IN_BLOCK, index: blockIndex, componentParams: componentParams}
+export const SelectCurrentBlock = (blockIndex) => {
+    return {type: CHANGE_COMPONENT_IN_BLOCK, blockIndex: blockIndex}
 }
 
 export const ChangeComponentInBlock = (componentID, blockIndex, componentParams) => {

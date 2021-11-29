@@ -28,7 +28,6 @@ const DefaultComponents = [
                 type: "button",
                 icon: ButtonIcon,
                 css: {
-                    cursor: "pointer",
                     width: 200,
                 },
                 body: "Button"
