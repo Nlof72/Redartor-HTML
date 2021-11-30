@@ -11,9 +11,11 @@ export const getHTML = (components) => {
             let componentHref = "";
             let componentSrc = "";
 
+
             if (Object.keys(component.css).length !== 0) {
-                componentClass = "class=" + component.id + "-" + component.componentType;
+                componentClass = "class=" + component.id + "-" + component.componentType+'"';
             }
+
             if (component.html) {
                 let componentHref = "href=" + component.html.href;
                 let componentSrc = "src=" + component.html.src;
@@ -26,18 +28,24 @@ export const getHTML = (components) => {
 `;
             else
                 HTML += `\
-<${componentName} class="${componentClass}" ${componentSrc} ${componentHref}>
+<${componentName} ${componentClass} ${componentSrc} ${componentHref}>
 ${componentText}
 </${componentName}>
 `;
 
 
         })
+        HTML=`\
+        <div>
+        ${HTML}
+</div>
+`;
     });
     HTML = `\
 <body>
 ${HTML}
-</body>`;
+</body>
+`;
 
     return (format(HTML, ' '.repeat(4)));
 }
