@@ -1,33 +1,36 @@
 const format = require('html-format');
 
 export const getHTML = (components) => {
-
+    // Все это говно нужно переписать - это быстро костыль 2000
     let HTML = "";
 
+    console.log(components);
+
     components.forEach((elem) => {
+        let block = "";
         elem.filter(item => item.parentId === 0).forEach((component) => {
             let componentName = component.componentType;
             let componentClass = "";
             let componentHref = "";
             let componentSrc = "";
+            let componentText = component.body;
 
 
             if (Object.keys(component.css).length !== 0) {
-                componentClass = "class=" + component.id + "-" + component.componentType+'"';
+                componentClass = `class="${component.id.substr(0, 8)}-${component.componentType}"`;
             }
 
             if (component.html) {
-                let componentHref = "href=" + component.html.href;
-                let componentSrc = "src=" + component.html.src;
+                componentHref = "href=" + component.html.href;
+                componentSrc = "src=" + component.html.src;
             }
-            let componentText = component.body;
 
             if (["input", "img"].includes(componentName))
-                HTML += `\
+                block += `\
 <${componentName} ${componentClass} ${componentSrc} ${componentHref}/>
 `;
             else
-                HTML += `\
+                block += `\
 <${componentName} ${componentClass} ${componentSrc} ${componentHref}>
 ${componentText}
 </${componentName}>
@@ -35,11 +38,11 @@ ${componentText}
 
 
         })
-        HTML=`\
+        HTML += `\
         <div>
-        ${HTML}
+${block}
 </div>
-`;
+`
     });
     HTML = `\
 <body>
@@ -51,6 +54,7 @@ ${HTML}
 }
 
 export const getCSS = (components) => {
+    // А это быстро намазанное 3000
     let CSS = "";
 
     components.forEach((elem) => {
