@@ -8,23 +8,21 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import CollapsedListItem from "./CollapsedListItem/CollapsedListItem";
 import StarIcon from "@mui/icons-material/Star";
 import {AddComponentToBlock} from "../../../Redux/CanvasReducer";
-import DefaultComponents from "../../../Data/ComponentsData";
+import {Components, Topics} from "../../../Data/ComponentsData";
 import {useDispatch, useSelector} from "react-redux";
 
 
 function ListComponents(props) {
     const [open, setOpen] = React.useState({});
     const dispatch = useDispatch();
-    const canvasBody = useSelector((state) => state.canvasData);//костыль
+    const canvasBody = useSelector((state) => state.canvasData);
     const handleClick = (prop, value) => {
         setOpen({...open, [prop]: value});
     };
 
 
-    let componentsList = DefaultComponents;
-
     return (
-        componentsList.map((context, index) => {
+        Topics.map((context, index) => {
             return (
                 <List key={index}>
 
@@ -39,7 +37,7 @@ function ListComponents(props) {
 
                     <Collapse key={index} in={open[context.name]} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            {context.components.map((comp, index) => {
+                            {Components.filter(item => item.topicId === context.id).map((comp, index) => {
                                 return (<CollapsedListItem
                                     addToBlock={() => {
                                         dispatch(AddComponentToBlock(comp, canvasBody.currentBlock))

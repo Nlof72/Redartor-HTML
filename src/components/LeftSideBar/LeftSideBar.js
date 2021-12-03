@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from "@mui/styles";
 import ListComponents from "./ListComponents/ListComponents";
 import Search from "./Search/Search";
 
 
+
 const useStyles = makeStyles((theme) => ({
-    mainContainer:{
-        display:"flex",
-        flexDirection:"column",
+    mainContainer: {
+        display: "flex",
+        flexDirection: "column",
     },
     searchContainer: {
-        padding:"10px",
+        padding: "10px",
         backgroundColor: theme.palette.primary.main,
     },
     componentsContainer: {
@@ -21,20 +22,33 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const ListRenderSelector = (searchData) => {
+    if (searchData)
+        return (<div>
+            {/*{Components.map( (item.index) => {*/}
+
+            {/*})}*/}
+        </div>)
+    else
+        return <ListComponents/>
+}
+
 
 function LeftSideBar(props) {
 
     const classes = useStyles();
-
+    const [searchData, setSearchData] = useState(null);
     return (
         <div className={classes.mainContainer}>
-            <div className={classes.searchContainer}>
+            <div className={classes.searchContainer} onChange={(e) => {
+                setSearchData(e.target.value)
+            }}>
                 <Search/>
             </div>
-            <div className={classes.componentsContainer} >
-                <ListComponents/>
-            </div>
+            <div className={classes.componentsContainer}>
+                {ListRenderSelector(searchData)}
 
+            </div>
         </div>
     );
 }
