@@ -19,12 +19,7 @@ import TableIcon from "../Assets/Icons/32x32/Table.png";
 
 
 export const Topics = [
-    {
-        id: 0,
-        name: "Результаты поиска",
-        type: "search",
-        icon: ActionIcon
-    },
+
     {
         id: 1,
         name: "Элементы взаимодействия",

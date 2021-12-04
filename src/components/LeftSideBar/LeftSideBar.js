@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {makeStyles} from "@mui/styles";
 import ListComponents from "./ListComponents/ListComponents";
 import Search from "./Search/Search";
-
+import {Components, Topics} from "../../Data/ComponentsData";
+import ActionIcon from "../../Assets/Icons/32x32/Action.png";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,14 +24,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ListRenderSelector = (searchData) => {
-    if (searchData)
-        return (<div>
-            {/*{Components.map( (item.index) => {*/}
+    let topics, components;
 
-            {/*})}*/}
-        </div>)
-    else
-        return <ListComponents/>
+    if (searchData) {
+        topics = [{
+            id: 0,
+            name: "Результат поиска",
+            type: "search",
+            icon: ActionIcon
+        }, ...Topics]
+
+        let searchComponents = [...Components.filter((items, index) => items.name.toLowerCase().includes(searchData))];
+        searchComponents = searchComponents.map((item, index) => {
+            return {...item, topicId: 0}
+        });
+
+        components = [...Components].concat(searchComponents)
+    } else {
+        topics = Topics;
+        components = Components;
+    }
+    return <ListComponents topics={topics} defaultComponents={components}/>
 }
 
 
