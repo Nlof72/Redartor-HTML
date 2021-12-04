@@ -10,35 +10,14 @@ import {
     styled
 } from "@mui/material";
 
-// АХТУНГ КОСТЫЛИ
-function TableParameters(props) {
-    console.log(props)
-    const StyledTableCell = styled(TableCell)(({theme}) => ({
-        [`&.${tableCellClasses.body}`]: {
-            fontSize: 16,
-        },
-    }));
 
-    const StyledHeader = styled("div")(({theme}) => ({
-        backgroundColor: theme.palette.primary.main,
-        textAlign: "center",
-        color: "white",
-        padding: "16px 0",
-        fontSize: 23,
-    }));
-
-    const StyledTableRow = styled(TableRow)(({theme}) => ({}));
-
-    function createData(name, field) {
-        return {name, field};
+const TableParameters = (props) => {
+    let params = null;
+    if (props.componentParams) {
+        params = Object.entries(props.componentParams).map((row) => {
+            return {name: row[0], input: <input value={row[1]}/>}
+        })
     }
-    let rows = null;
-    if (props.comProps) {
-         rows = Object.entries(props.comProps)
-        rows = rows.map((value => {return createData(value[0], <input value={value[1]}/>)}))
-    }
-    console.log(rows)
-
     return (
         <div>
             <StyledHeader>
@@ -49,17 +28,33 @@ function TableParameters(props) {
                     <TableHead>
                     </TableHead>
                     <TableBody>
-                        {rows!==null && rows.map((row) => (
+                        {params && params.map((row) => (
                             <StyledTableRow key={row.name}>
                                 <StyledTableCell> {row.name} </StyledTableCell>
-                                <StyledTableCell align="center">{row.field}</StyledTableCell>
+                                <StyledTableCell align="center">{row.input}</StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
         </div>
-    );
+    )
 }
+
+const StyledTableCell = styled(TableCell)(() => ({
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 16,
+    },
+}));
+
+const StyledHeader = styled("div")(({theme}) => ({
+    backgroundColor: theme.palette.primary.main,
+    textAlign: "center",
+    color: "white",
+    padding: "16px 0",
+    fontSize: 23,
+}));
+
+const StyledTableRow = styled(TableRow)(() => ({}));
 
 export default TableParameters;

@@ -2,22 +2,21 @@ import React from 'react';
 import TableParameters from "./TableParameters/TableParameters";
 import {useSelector} from "react-redux";
 
-// АХТУНГ КОСТЫЛИ
-function RightSideBar() {
-    const canvasBody = useSelector((state) => state.canvasData);
 
-    let componentId = canvasBody.selectedComponentId;
-    let blockId = canvasBody.currentBlock;
-    let currentComponent = null
-    if (componentId)
-        currentComponent = canvasBody.canvas[blockId].find(item => item.id === componentId);
-    let compProps = null;
-    if (currentComponent)
-        compProps = {...currentComponent.css, ...currentComponent.html, body: currentComponent.body}
-    return (
-        <TableParameters comProps={compProps}/>
-    );
+const getComponentParams = (compId, blockId, canvas) => {
+    if (compId) {
+        let currentComponent = canvas[blockId].find(item => item.id === compId);
+        return {...currentComponent.css, ...currentComponent.html, body: currentComponent.body};
+    }
+    return null;
 }
 
+const RightSideBar = () => {
+    const canvasBody = useSelector((state) => state?.canvasData);
+    let componentParams = getComponentParams(canvasBody.selectedComponentId, canvasBody.currentBlock, canvasBody.canvas);
+    return (
+        <TableParameters componentParams={componentParams}/>
+    );
+}
 
 export default RightSideBar;

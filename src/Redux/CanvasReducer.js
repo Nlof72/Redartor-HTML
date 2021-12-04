@@ -4,7 +4,7 @@ const ADD_BLOCK = "ADD-BLOCK";
 const DELETE_BLOCK = "DELETE-BLOCK";
 const CLEAR = "CLEAR";
 const ADD_COMPONENT_TO_BLOCK = "ADD-COMPONENT-TO-BLOCK";
-const CHANGE_COMPONENT_IN_BLOCK = "CHANGE-COMPONENT-IN-BLOCK";
+const SELECT_CURRENT_BLOCK = "SELECT-CURRENT-BLOCK";
 const SELECT_CURRENT_COMPONENT = "SELECT-CURRENT-COMPONENT";
 
 let initialState = {
@@ -27,7 +27,6 @@ const CreateComponentByParams = (componentData, state) => {
         newComponent["html"] = {...newComponent["html"], src: componentData.src};
     if (componentData.href !== undefined)
         newComponent["html"] = {...newComponent["html"], href: componentData.href};
-    debugger;
     return newComponent;
 }
 
@@ -62,43 +61,34 @@ const CanvasReducer = (state = initialState, action) => {
         case SELECT_CURRENT_COMPONENT:
             return {...state, selectedComponentId: action.id, currentBlock: action.blockIndex}
 
-        case CHANGE_COMPONENT_IN_BLOCK:
-            return {...state, currentBlock: action.blockIndex}
-
+        case SELECT_CURRENT_BLOCK:
+            if (state.currentBlock===action.blockIndex)
+                return {...state, currentBlock: action.blockIndex}
+            else
+                return {...state, currentBlock: action.blockIndex, selectedComponentId: null}
         default:
             return state;
-
     }
 };
 
-export const AddNewBlock = () => {
-    return {type: ADD_BLOCK}
-}
-export const ClearCanvas = () => {
-    return {type: CLEAR}
-}
-export const DeleteBlock = (blockIndex) => {
-    return {type: DELETE_BLOCK, index: blockIndex}
-}
-export const AddComponentToBlock = (componentData, blockIndex) => {
-    return {
-        type: ADD_COMPONENT_TO_BLOCK,
-        blockIndex: blockIndex,
-        component: componentData
-    }
-}
+export const AddNewBlock = () => ({type: ADD_BLOCK})
 
-export const SelectCurrentComponent = (id, blockIndex) => {
-    return {type: SELECT_CURRENT_COMPONENT, blockIndex: blockIndex, id: id}
-}
+export const ClearCanvas = () => ({type: CLEAR})
 
-export const SelectCurrentBlock = (blockIndex) => {
-    return {type: CHANGE_COMPONENT_IN_BLOCK, blockIndex: blockIndex}
-}
+export const DeleteBlock = (blockIndex) => ({type: DELETE_BLOCK, index: blockIndex})
 
-export const ChangeComponentInBlock = (componentID, blockIndex, componentParams) => {
-    return {type: CHANGE_COMPONENT_IN_BLOCK, index: blockIndex, componentParams: componentParams}
-}
+export const AddComponentToBlock = (componentData, blockIndex) => ({
+    type: ADD_COMPONENT_TO_BLOCK,
+    blockIndex: blockIndex,
+    component: componentData
+})
 
+export const SelectCurrentComponent = (id, blockIndex) => ({
+    type: SELECT_CURRENT_COMPONENT,
+    blockIndex: blockIndex,
+    id: id
+})
+
+export const SelectCurrentBlock = (blockIndex) => ({type: SELECT_CURRENT_BLOCK, blockIndex: blockIndex})
 
 export default CanvasReducer;

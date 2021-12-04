@@ -16,7 +16,6 @@ export const theme = createTheme({
     images: {
         // TODO: Добавить ссылки на картинки, которые будут использоваться
     },
-    // shape: {
-    //     borderRadius: '30px',
-    // }
 });
+
+export const activeColor = theme.palette.active.main
