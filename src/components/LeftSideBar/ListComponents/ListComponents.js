@@ -14,15 +14,14 @@ import {useDispatch, useSelector} from "react-redux";
 
 function ListComponents(props) {
     const [open, setOpen] = React.useState({});
-    const dispatch = useDispatch();
     const canvasBody = useSelector((state) => state.canvasData);//костыль
+    const dispatch = useDispatch();
+
     const handleClick = (prop, value) => {
         setOpen({...open, [prop]: value});
     };
 
-
     let componentsList = DefaultComponents;
-
     return (
         componentsList.map((context, index) => {
             return (

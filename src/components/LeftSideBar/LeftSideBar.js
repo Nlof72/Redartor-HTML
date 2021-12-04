@@ -3,6 +3,20 @@ import {makeStyles} from "@mui/styles";
 import ListComponents from "./ListComponents/ListComponents";
 import Search from "./Search/Search";
 
+function LeftSideBar(props) {
+    const classes = useStyles();
+    return (
+        <div className={classes.mainContainer}>
+            <div className={classes.searchContainer}>
+                <Search/>
+            </div>
+            <div className={classes.componentsContainer} >
+                <ListComponents/>
+            </div>
+
+        </div>
+    );
+}
 
 const useStyles = makeStyles((theme) => ({
     mainContainer:{
@@ -20,23 +34,5 @@ const useStyles = makeStyles((theme) => ({
 
     }
 }));
-
-
-function LeftSideBar(props) {
-
-    const classes = useStyles();
-
-    return (
-        <div className={classes.mainContainer}>
-            <div className={classes.searchContainer}>
-                <Search/>
-            </div>
-            <div className={classes.componentsContainer} >
-                <ListComponents/>
-            </div>
-
-        </div>
-    );
-}
 
 export default LeftSideBar;
