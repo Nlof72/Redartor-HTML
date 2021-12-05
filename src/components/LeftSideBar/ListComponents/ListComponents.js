@@ -8,22 +8,23 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import CollapsedListItem from "./CollapsedListItem/CollapsedListItem";
 import StarIcon from "@mui/icons-material/Star";
 import {AddComponentToBlock} from "../../../Redux/CanvasReducer";
-import DefaultComponents from "../../../Data/ComponentsData";
 import {useDispatch, useSelector} from "react-redux";
 
 
 function ListComponents(props) {
-    const [open, setOpen] = React.useState({});
-    const canvasBody = useSelector((state) => state.canvasData);//костыль
-    const dispatch = useDispatch();
 
+    const [open, setOpen] = React.useState({"Результат поиска": true});
+    const dispatch = useDispatch();
+    const canvasBody = useSelector((state) => state.canvasData);
     const handleClick = (prop, value) => {
         setOpen({...open, [prop]: value});
     };
 
-    let componentsList = DefaultComponents;
+    const leftSideData = props.leftSideData;
+
+
     return (
-        componentsList.map((context, index) => {
+        leftSideData.map((context, index) => {
             return (
                 <List key={index}>
 
@@ -45,6 +46,7 @@ function ListComponents(props) {
                                     }}
                                     name={comp.name}
                                     icon={comp.icon}
+                                    mock={comp.mock}
                                     key={"collapseListItem-" + index}
                                 />)
                             })}

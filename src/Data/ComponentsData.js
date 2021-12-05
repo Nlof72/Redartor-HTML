@@ -17,160 +17,156 @@ import OtherIcon from "../Assets/Icons/32x32/Other.png";
 import ListIcon from "../Assets/Icons/32x32/List.png";
 import TableIcon from "../Assets/Icons/32x32/Table.png";
 
-const DefaultComponents = [
+
+export const Topics = [
+
     {
+        id: 1,
         name: "Элементы взаимодействия",
         type: "action",
-        icon: ActionIcon,
-        components: [
-            {
-                name: "Кнопка",
-                type: "button",
-                icon: ButtonIcon,
-                css: {
-                    width: 200,
-                },
-                body: "Button"
-            },
-            {
-                name: "Поле ввода",
-                type: "input",
-                icon: InputIcon,
-                css: {
-                }
-            }
-        ],
+        icon: ActionIcon
     },
     {
+        id: 2,
         name: "Текст",
         type: "text",
-        icon: TextIcon,
-        components: [
-            {
-                name: "Ссылка",
-                type: "a",
-                icon: LinkIcon,
-                css: {
-                },
-                href: "#",
-                body: "Hello world!"
-            },
-            {
-                name: "Жирный текст",
-                type: "b",
-                icon: BoldIcon,
-                css: {
-                },
-                body: "Hello world!"
-            },
-            {
-                name: "Курсив",
-                type: "i",
-                icon: ItalicIcon,
-                css: {
-
-                },
-                body: "Hello world!"
-            },
-            {
-                name: "Заголовок",
-                type: "h1",
-                icon: HeadingIcon,
-                css: {
-
-                },
-                body: "Hello world!"
-            }
-        ],
-
+        icon: TextIcon
     },
     {
+        id: 3,
         name: "Мультимедия",
         type: "multimedia",
-        icon: MediaIcon,
-        components: [
-            {
-                name: "Картинка",
-                type: "img",
-                icon: ImageIcon,
-                css: {
-                    width: "50px",
-                    height: "50px",
-                },
-                src: "https://memepedia.ru/wp-content/uploads/2019/03/u-suka-10.jpg"
-            },
-            {
-                name: "Видео",
-                type: "video",
-                icon: VideoIcon,
-                css: {
-
-                },
-                src: ""
-            },
-            {
-                name: "Аудио",
-                type: "audio",
-                icon: AudioIcon,
-                css: {
-
-                },
-                src: ""
-            },
-            {
-                name: "Контейнер медиа",
-                type: "iframe",
-                icon: ContainerIcon,
-                css: {
-
-                },
-                src: ""
-            },
-        ],
-
+        icon: MediaIcon
     },
     {
+        id: 4,
         name: "Контейнеры",
         type: "universal",
-        icon: LayoutIcon,
-        components: [
-            {
-                name: "Блок",
-                type: "div",
-                icon: DivIcon,
-                css: {
-                    border: "1px solid black",
-                    width: "200px",
-                    height: "200px"
-                },
-                body: "Hello world!"
-            }
-        ],
+        icon: LayoutIcon
     },
     {
+        id: 5,
         name: "Другое",
         type: "other",
-        icon: OtherIcon,
-        components: [
-            {
-                name: "Список",
-                type: "ul",
-                icon: ListIcon,
-                css: {
+        icon: OtherIcon
+    }
 
-                }
-            },
-            {
-                name: "Таблица",
-                type: "table",
-                icon: TableIcon,
-                css: {
-                    border: "1px solid black"
-                }
-            }
-        ],
-
-    },
 ]
 
-export default  DefaultComponents;
+
+export const Components = [
+    {
+        name: "Кнопка",
+        type: "button",
+        icon: ButtonIcon,
+        css: {
+            width: 200,
+        },
+        body: "Button",
+        topicId: 1
+    },
+    {
+        name: "Поле ввода",
+        type: "input",
+        icon: InputIcon,
+        css: {},
+        topicId: 1
+    },
+    {
+        name: "Ссылка",
+        type: "a",
+        icon: LinkIcon,
+        css: {},
+        href: "#",
+        body: "Hello world!",
+        topicId: 2
+    },
+    {
+        name: "Жирный текст",
+        type: "b",
+        icon: BoldIcon,
+        css: {},
+        body: "Hello world!",
+        topicId: 2
+    },
+    {
+        name: "Курсив",
+        type: "i",
+        icon: ItalicIcon,
+        css: {},
+        body: "Hello world!",
+        topicId: 2
+    },
+    {
+        name: "Заголовок",
+        type: "h1",
+        icon: HeadingIcon,
+        css: {},
+        body: "Hello world!",
+        topicId: 2
+    },
+    {
+        name: "Картинка",
+        type: "img",
+        icon: ImageIcon,
+        css: {
+            width: "50px",
+            height: "50px",
+        },
+        src: "https://memepedia.ru/wp-content/uploads/2019/03/u-suka-10.jpg",
+        topicId: 3
+    },
+    {
+        name: "Видео",
+        type: "video",
+        icon: VideoIcon,
+        css: {},
+        src: "",
+        topicId: 3
+    },
+    {
+        name: "Аудио",
+        type: "audio",
+        icon: AudioIcon,
+        css: {},
+        src: "",
+        topicId: 3
+    },
+    {
+        name: "Контейнер медиа",
+        type: "iframe",
+        icon: ContainerIcon,
+        css: {},
+        src: "",
+        topicId: 3
+    },
+
+    {
+        name: "Блок",
+        type: "div",
+        icon: DivIcon,
+        css: {
+            border: "1px solid black",
+            width: "200px",
+            height: "200px"
+        },
+        body: "Hello world!",
+        topicId: 4
+    },
+    {
+        name: "Список",
+        type: "ul",
+        icon: ListIcon,
+        css: {},
+        topicId: 5
+    },
+    {
+        name: "Таблица",
+        type: "table",
+        icon: TableIcon,
+        css: {
+            border: "1px solid black"
+        },
+        topicId: 5
+    }
+]
