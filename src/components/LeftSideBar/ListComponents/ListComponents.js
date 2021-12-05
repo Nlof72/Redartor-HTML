@@ -20,11 +20,11 @@ function ListComponents(props) {
         setOpen({...open, [prop]: value});
     };
 
-    const topics = props.topics;
-    const defaultComponents = props.defaultComponents || [];
+    const leftSideData = props.leftSideData;
+
 
     return (
-        topics.map((context, index) => {
+        leftSideData.map((context, index) => {
             return (
                 <List key={index}>
 
@@ -39,13 +39,14 @@ function ListComponents(props) {
 
                     <Collapse key={index} in={open[context.name]} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            {defaultComponents.filter(item => item.topicId === context.id).map((comp, index) => {
+                            {context.components.map((comp, index) => {
                                 return (<CollapsedListItem
                                     addToBlock={() => {
                                         dispatch(AddComponentToBlock(comp, canvasBody.currentBlock))
                                     }}
                                     name={comp.name}
                                     icon={comp.icon}
+                                    mock={comp.mock}
                                     key={"collapseListItem-" + index}
                                 />)
                             })}

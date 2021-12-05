@@ -8,6 +8,12 @@ function CollapsedListItem(props) {
     const addToBlock = (type, css, src) => {
         props.addToBlock(type, css, src);
     }
+
+    if (props.mock){
+        return <ListItemButton>
+            <ListItemText primary={"Ничего не найдено"}/>
+        </ListItemButton>
+    }
     return (
         <ListItemButton sx={{pl: 4}} onClick={() => {
             addToBlock(props.type, props.css, props.src)

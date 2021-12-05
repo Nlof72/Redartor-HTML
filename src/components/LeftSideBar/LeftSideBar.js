@@ -4,6 +4,7 @@ import ListComponents from "./ListComponents/ListComponents";
 import Search from "./Search/Search";
 import {Components, Topics} from "../../Data/ComponentsData";
 import ActionIcon from "../../Assets/Icons/32x32/Action.png";
+import {MapComponentsToTopics} from "../../Utils/Helpers/MapComponentsToTopics";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +45,7 @@ const ListRenderSelector = (searchData) => {
         topics = Topics;
         components = Components;
     }
-    return <ListComponents topics={topics} defaultComponents={components}/>
+    return <ListComponents leftSideData={MapComponentsToTopics(topics, components)}/>
 }
 
 
