@@ -6,20 +6,6 @@ import {Components, Topics} from "../../Data/ComponentsData";
 import ActionIcon from "../../Assets/Icons/32x32/Action.png";
 import {MapComponentsToTopics} from "../../Utils/Helpers/MapComponentsToTopics";
 
-function LeftSideBar(props) {
-    const classes = useStyles();
-    return (
-        <div className={classes.mainContainer}>
-            <div className={classes.searchContainer}>
-                <Search/>
-            </div>
-            <div className={classes.componentsContainer} >
-                <ListComponents/>
-            </div>
-
-        </div>
-    );
-}
 
 const useStyles = makeStyles((theme) => ({
     mainContainer: {
