@@ -34,6 +34,7 @@ export const Topics = [
     },
     {
         id: 3,
+
         name: "Мультимедия",
         type: "multimedia",
         icon: MediaIcon
@@ -59,26 +60,39 @@ export const Components = [
         name: "Кнопка",
         type: "button",
         icon: ButtonIcon,
-        css: {
-            width: 200,
+        html: {
+            content: "New button",
+            disabled: false,
         },
-        body: "Button",
+        css: {
+            width: "200px",
+            height: "25px"
+        },
         topicId: 1
     },
     {
         name: "Поле ввода",
         type: "input",
         icon: InputIcon,
-        css: {},
+        html: {
+            type: "text",
+            src: ""
+        },
+        css: {
+            width: "200px",
+            height: "25px"
+        },
         topicId: 1
     },
     {
         name: "Ссылка",
         type: "a",
         icon: LinkIcon,
+        html: {
+            content: "Hello world!",
+            href: "#",
+        },
         css: {},
-        href: "#",
-        body: "Hello world!",
         topicId: 2
     },
     {
@@ -86,87 +100,124 @@ export const Components = [
         type: "b",
         icon: BoldIcon,
         css: {},
-        body: "Hello world!",
+        html: {
+            content: "Hello world!",
+        },
         topicId: 2
     },
     {
         name: "Курсив",
         type: "i",
         icon: ItalicIcon,
+        html: {
+            content: "Hello world!",
+        },
         css: {},
-        body: "Hello world!",
         topicId: 2
     },
     {
         name: "Заголовок",
         type: "h1",
         icon: HeadingIcon,
+        html: {
+            content: "Hello world!",
+        },
         css: {},
-        body: "Hello world!",
         topicId: 2
     },
     {
         name: "Картинка",
         type: "img",
         icon: ImageIcon,
-        css: {
-            width: "50px",
-            height: "50px",
+        html: {
+            src: "https://www.masala.com/cloud/2021/07/28/8DKbhQ8H-SmudgeCat.jpg-1200x675.jpg",
+            alt: "",
         },
-        src: "https://memepedia.ru/wp-content/uploads/2019/03/u-suka-10.jpg",
+        css: {
+            width: "150px",
+            height: "150px",
+        },
         topicId: 3
     },
     {
         name: "Видео",
         type: "video",
         icon: VideoIcon,
-        css: {},
-        src: "",
+        html: {
+            src: "https://www.w3schools.com/html/movie.mp4",
+            controls: true,
+            autoplay: false,
+            loop: true,
+        },
+        css: {
+            width: "250px",
+            height: "250px",
+        },
         topicId: 3
     },
     {
         name: "Аудио",
         type: "audio",
         icon: AudioIcon,
+        html: {
+            src: "",
+            controls: true,
+            autoplay: false,
+            loop: true,
+        },
         css: {},
-        src: "",
         topicId: 3
     },
     {
         name: "Контейнер медиа",
         type: "iframe",
         icon: ContainerIcon,
-        css: {},
-        src: "",
+        html: {
+            src: "https://www.youtube.com/embed/XuXZAXV7NM0?start=220"
+        },
+        css: {
+            width: "480px",
+            height: "270px",
+        },
         topicId: 3
     },
-
     {
         name: "Блок",
         type: "div",
         icon: DivIcon,
+        html: {
+            content: "Im Div!"
+        },
         css: {
             border: "1px solid black",
             width: "200px",
             height: "200px"
         },
-        body: "Hello world!",
         topicId: 4
     },
     {
         name: "Список",
         type: "ul",
         icon: ListIcon,
+        html: {
+            type: "disc",
+        },
         css: {},
+        rowsCount: 0,
         topicId: 5
     },
     {
         name: "Таблица",
         type: "table",
         icon: TableIcon,
+        html: {},
         css: {
-            border: "1px solid black"
+            border: "1px solid black",
+            width: "200px",
+            height: "200px"
         },
+        columnsCount: 1,
+        rowsCount: 1,
         topicId: 5
     }
 ]
