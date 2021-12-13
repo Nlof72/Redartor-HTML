@@ -11,9 +11,9 @@ export const getHTML = (components) => {
 
             const objName = component.componentType;
             const objClass = Object.keys(component.css).length !== 0 ? `class="${className}"` : "";
-            const objHref = component.html ? `href="${component.html.href}"` : "";
-            const objSrc = component.html ? `src="${component.html.src}"` : "";
-            const objText = component.body;
+            const objHref = component.html.href ? `href="${component.html.href}"` : "";
+            const objSrc = component.html.src ? `src="${component.html.src}"` : "";
+            const objText = component.html.content;
 
             if (["input", "img"].includes(objName))
                 block += `\
@@ -51,7 +51,7 @@ export const getCSS = (components) => {
             let params = "";
 
             Object.keys(component.css).map((e, i) => {
-                params += `\
+                return params += `\
                 ${e}: ${component.css[e]};
                 `
             })
