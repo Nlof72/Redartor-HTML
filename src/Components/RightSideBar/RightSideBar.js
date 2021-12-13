@@ -8,6 +8,7 @@ const getComponentParams = (compId, blockId, canvas) => {
         let component = canvas[blockId].find(item => item.id === compId);
         return {css: component.css, html: component.html}
     }
+
     return null;
 }
 
