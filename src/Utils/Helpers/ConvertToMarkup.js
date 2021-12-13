@@ -56,8 +56,8 @@ export const getCSS = (components) => {
                 `
             })
 
-             if (params !== "")
-                 CSS += `.${component.id.substr(0, 8) + "-" + component.componentType}{
+            if (params !== "")
+                CSS += `.${component.id.substr(0, 8) + "-" + component.componentType}{
                  ${params}
                  }
  `;
