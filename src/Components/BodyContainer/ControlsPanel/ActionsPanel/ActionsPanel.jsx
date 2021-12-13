@@ -26,7 +26,7 @@ const ActionsPanel = (props) => {
             cssURL = window.URL.createObjectURL(data),
             tempLink = document.createElement('a');
         tempLink.href = cssURL;
-        tempLink.setAttribute('download', 'index.css');
+        tempLink.setAttribute('download', 'style.css');
         await tempLink.click();
     }
 
