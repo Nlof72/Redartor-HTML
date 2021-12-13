@@ -6,6 +6,7 @@ const CLEAR = "CLEAR";
 const ADD_COMPONENT_TO_BLOCK = "ADD-COMPONENT-TO-BLOCK";
 const SELECT_CURRENT_BLOCK = "SELECT-CURRENT-BLOCK";
 const SELECT_CURRENT_COMPONENT = "SELECT-CURRENT-COMPONENT";
+const SET_COMPONENT_ATTRIBUTES = "SET-COMPONENT-ATTRIBUTES";
 
 let initialState = {
     canvas: [[]],
@@ -19,14 +20,16 @@ const CreateComponentByParams = (componentData, state) => {
         orderId: state.canvas[state.currentBlock].length + 1,
         parentId: 0,
         componentType: componentData.type,
-        css: componentData.css,
-        body: componentData.body
+        css: {},
+        html: {},
     };
 
-    if (componentData.src !== undefined)
-        newComponent["html"] = {...newComponent["html"], src: componentData.src};
-    if (componentData.href !== undefined)
-        newComponent["html"] = {...newComponent["html"], href: componentData.href};
+    if (Object.keys(componentData.html).length !== 0) {
+        newComponent["html"] ={...newComponent["html"], ...componentData.html}
+    }
+    if (Object.keys(componentData.css).length !== 0) {
+        newComponent["css"] ={...newComponent["css"], ...componentData.css}
+    }
     return newComponent;
 }
 
@@ -62,10 +65,29 @@ const CanvasReducer = (state = initialState, action) => {
             return {...state, selectedComponentId: action.id, currentBlock: action.blockIndex}
 
         case SELECT_CURRENT_BLOCK:
-            if (state.currentBlock===action.blockIndex)
+            if (state.currentBlock === action.blockIndex)
                 return {...state, currentBlock: action.blockIndex}
             else
                 return {...state, currentBlock: action.blockIndex, selectedComponentId: null}
+
+        case SET_COMPONENT_ATTRIBUTES:
+            return {
+                ...state, canvas: state.canvas.map(block => {
+                    if (state.canvas.indexOf(block) === action.blockIndex) {
+                        return block.map(component => {
+                            debugger;
+                            if (component.id === action.id) {
+                                let testComp = {...component, ...action.newAttrs}
+                                debugger;
+                                return testComp
+                            } else
+                                return component
+                        })
+                    } else {
+                        return block
+                    }
+                })
+            }
         default:
             return state;
     }
@@ -90,5 +112,11 @@ export const SelectCurrentComponent = (id, blockIndex) => ({
 })
 
 export const SelectCurrentBlock = (blockIndex) => ({type: SELECT_CURRENT_BLOCK, blockIndex: blockIndex})
+export const SetComponentAttributes = (id, blockIndex, attrs) => ({
+    type: SET_COMPONENT_ATTRIBUTES,
+    blockIndex: blockIndex,
+    id: id,
+    newAttrs: attrs
+})
 
 export default CanvasReducer;

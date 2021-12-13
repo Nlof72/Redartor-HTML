@@ -2,7 +2,7 @@ import React from "react";
 import {styled} from "@mui/material/styles";
 import {Box, IconButton} from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
-import ComponentItem from "./ComponentItem/ComponentItem";
+import ComponentItem from "../ComponentItem/ComponentItem";
 import {useDispatch, useSelector} from "react-redux";
 import {SelectCurrentBlock, SelectCurrentComponent} from "../../../../Redux/CanvasReducer";
 import {activeColor} from "../../../../theme";

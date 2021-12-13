@@ -5,17 +5,18 @@ import {useSelector} from "react-redux";
 
 const getComponentParams = (compId, blockId, canvas) => {
     if (compId) {
-        let currentComponent = canvas[blockId].find(item => item.id === compId);
-        return {...currentComponent.css, ...currentComponent.html, body: currentComponent.body};
+        let component = canvas[blockId].find(item => item.id === compId);
+        return {css: component.css, html: component.html}
     }
     return null;
 }
 
 const RightSideBar = () => {
     const canvasBody = useSelector((state) => state?.canvasData);
-    let componentParams = getComponentParams(canvasBody.selectedComponentId, canvasBody.currentBlock, canvasBody.canvas);
+    let componentAttrs = getComponentParams(canvasBody.selectedComponentId, canvasBody.currentBlock, canvasBody.canvas);
     return (
-        <TableParameters componentParams={componentParams}/>
+        <TableParameters componentAttrs={componentAttrs} compId={canvasBody.selectedComponentId}
+                         blockId={canvasBody.currentBlock}/>
     );
 }
 

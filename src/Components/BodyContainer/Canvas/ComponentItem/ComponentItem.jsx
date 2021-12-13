@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const ComponentItem = ({id, blockIndex,componentType, css, html, body, onSelectItem}) => {
+const ComponentItem = ({id, blockIndex, componentType, css, html, onSelectItem}) => {
     return (
         React.createElement(`${componentType}`,
             {
@@ -10,7 +10,7 @@ const ComponentItem = ({id, blockIndex,componentType, css, html, body, onSelectI
                 },
                 style: css,
                 ...html
-            }, body))
+            }, (html?.content)))
 }
 
 export default ComponentItem;
