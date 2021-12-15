@@ -5,6 +5,7 @@ export const getHTML = (components) => {
     let HTML = "";
 
     components.forEach((obj) => {
+
         let block = "";
         obj.filter(item => item.parentId === 0).forEach((component) => {
             const className = `${component.componentType}-${component.id.substr(0, 8)}`;

@@ -60,7 +60,6 @@ const ComponentItem = ({id, index, blockIndex, componentType, css, html, onSelec
             isDragging: monitor.isDragging()
         })
     });
-    const opacity = isDragging ? 0 : 1;
     drag(drop(ref));
 
     return (

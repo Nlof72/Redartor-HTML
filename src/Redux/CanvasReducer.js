@@ -7,8 +7,8 @@ const ADD_COMPONENT_TO_BLOCK = "ADD-COMPONENT-TO-BLOCK";
 const SELECT_CURRENT_BLOCK = "SELECT-CURRENT-BLOCK";
 const SELECT_CURRENT_COMPONENT = "SELECT-CURRENT-COMPONENT";
 const SET_COMPONENT_ATTRIBUTES = "SET-COMPONENT-ATTRIBUTES";
-const UPDATE_CANVAS_ORDER = "UPDATE_CANVAS_ORDER";
-
+const UPDATE_CANVAS_ORDER = "UPDATE-CANVAS-ORDER";
+const REPLACE_COMPONENT_TO_BLOCK = "REPLACE-COMPONENT-TO-BLOCK";
 
 let initialState = {
     canvas: [[]],
@@ -16,11 +16,12 @@ let initialState = {
     selectedComponentId: null,
 }
 
-const CreateComponentByParams = (componentData, state) => {
+const CreateComponentByParams = (componentData, blockIndex, state) => {
     let newComponent = {
         id: uuidv4(),
         orderId: state.canvas[state.currentBlock].length + 1,
         parentId: 0,
+        blockIndex: blockIndex,
         componentType: componentData.type,
         css: {},
         html: {},
@@ -56,7 +57,7 @@ const CanvasReducer = (state = initialState, action) => {
             return {
                 ...state, canvas: state.canvas.map(block => {
                     if (state.canvas.indexOf(block) === action.blockIndex) {
-                        return [...block, CreateComponentByParams(action.component, state)];
+                        return [...block, CreateComponentByParams(action.component,action.blockIndex, state)];
                     } else {
                         return block
                     }
@@ -94,6 +95,8 @@ const CanvasReducer = (state = initialState, action) => {
             return {
                 ...state, canvas: action.newCanvas
             }
+        case REPLACE_COMPONENT_TO_BLOCK:
+            return {...state}
         default:
             return state;
     }
@@ -129,8 +132,10 @@ export const SetComponentAttributes = (id, blockIndex, attrs) => ({
     newAttrs: attrs
 })
 
-export const UpdateCanvasOrder = (newCanvas) => ({
+export const UpdateCanvas = (newCanvas) => ({
     type: UPDATE_CANVAS_ORDER,
     newCanvas: newCanvas
 })
+
+
 export default CanvasReducer;
