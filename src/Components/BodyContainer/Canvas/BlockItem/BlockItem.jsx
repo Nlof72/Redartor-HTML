@@ -26,7 +26,7 @@ const BlockItem = (props) => {
             let newCanvas = [...currentCanvas];
             let currentBlockItems = newCanvas[currentBlock];
             [currentBlockItems[dragIndex], currentBlockItems[hoverIndex]] = [currentBlockItems[hoverIndex], currentBlockItems[dragIndex]];
-            // dispatch(UpdateCanvasOrder(newCanvas))
+            dispatch(UpdateCanvasOrder(newCanvas))
         },
         [currentCanvas]);
 
