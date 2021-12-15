@@ -7,8 +7,7 @@ export const getHTML = (components) => {
     components.forEach((obj) => {
         let block = "";
         obj.filter(item => item.parentId === 0).forEach((component) => {
-            const className = `${component.id.substr(0, 8)}-${component.componentType}`;
-
+            const className = `${component.componentType}-${component.id.substr(0, 8)}`;
             const objName = component.componentType;
             const objClass = Object.keys(component.css).length !== 0 ? `class="${className}"` : "";
             const objHref = component.html.href ? `href="${component.html.href}"` : "";
@@ -33,9 +32,16 @@ ${block}
 `
     });
     HTML = `\
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
 <body>
 ${HTML}
 </body>
+</html>
 `;
 
     return (format(HTML, ' '.repeat(4)));
@@ -56,8 +62,8 @@ export const getCSS = (components) => {
                 `
             })
 
-             if (params !== "")
-                 CSS += `.${component.id.substr(0, 8) + "-" + component.componentType}{
+            if (params !== "")
+                CSS += `.${component.componentType}-${component.id.substr(0, 8)}{
                  ${params}
                  }
  `;
