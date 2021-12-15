@@ -7,6 +7,8 @@ const ADD_COMPONENT_TO_BLOCK = "ADD-COMPONENT-TO-BLOCK";
 const SELECT_CURRENT_BLOCK = "SELECT-CURRENT-BLOCK";
 const SELECT_CURRENT_COMPONENT = "SELECT-CURRENT-COMPONENT";
 const SET_COMPONENT_ATTRIBUTES = "SET-COMPONENT-ATTRIBUTES";
+const UPDATE_CANVAS_ORDER = "UPDATE_CANVAS_ORDER";
+
 
 let initialState = {
     canvas: [[]],
@@ -25,10 +27,10 @@ const CreateComponentByParams = (componentData, state) => {
     };
 
     if (Object.keys(componentData.html).length !== 0) {
-        newComponent["html"] ={...newComponent["html"], ...componentData.html}
+        newComponent["html"] = {...newComponent["html"], ...componentData.html}
     }
     if (Object.keys(componentData.css).length !== 0) {
-        newComponent["css"] ={...newComponent["css"], ...componentData.css}
+        newComponent["css"] = {...newComponent["css"], ...componentData.css}
     }
     return newComponent;
 }
@@ -88,6 +90,10 @@ const CanvasReducer = (state = initialState, action) => {
                     }
                 })
             }
+        case UPDATE_CANVAS_ORDER:
+            return {
+                ...state, canvas: action.newCanvas
+            }
         default:
             return state;
     }
@@ -111,7 +117,11 @@ export const SelectCurrentComponent = (id, blockIndex) => ({
     id: id
 })
 
-export const SelectCurrentBlock = (blockIndex) => ({type: SELECT_CURRENT_BLOCK, blockIndex: blockIndex})
+export const SelectCurrentBlock = (blockIndex) => ({
+    type: SELECT_CURRENT_BLOCK,
+    blockIndex: blockIndex
+})
+
 export const SetComponentAttributes = (id, blockIndex, attrs) => ({
     type: SET_COMPONENT_ATTRIBUTES,
     blockIndex: blockIndex,
@@ -119,4 +129,8 @@ export const SetComponentAttributes = (id, blockIndex, attrs) => ({
     newAttrs: attrs
 })
 
+export const UpdateCanvasOrder = (newCanvas) => ({
+    type: UPDATE_CANVAS_ORDER,
+    newCanvas: newCanvas
+})
 export default CanvasReducer;

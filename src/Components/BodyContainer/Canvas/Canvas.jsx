@@ -5,6 +5,8 @@ import {Box, IconButton} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import {styled} from "@mui/material/styles";
 import {useDispatch, useSelector} from "react-redux";
+import {HTML5Backend} from "react-dnd-html5-backend";
+import {DndProvider} from "react-dnd";
 
 
 const Canvas = (props) => {
@@ -15,12 +17,17 @@ const Canvas = (props) => {
         <CanvasWrapper>
             {
                 canvasBody.canvas.map((block, index) => {
-                    return <BlockItem
-                        key={'BlockKey-' + index}
-                        blockIndex={index}
-                        blockBody={block}
-                        deleteBlock={() => {dispatch(DeleteBlock(index))}}
-                    />
+                    return (
+                        <DndProvider backend={HTML5Backend}>
+                            <BlockItem
+                                key={'BlockKey-' + index}
+                                blockIndex={index}
+                                blockBody={block}
+                                deleteBlock={() => {
+                                    dispatch(DeleteBlock(index))
+                                }}
+                            />
+                        </DndProvider>)
                 })
             }
             <IconButton onClick={() => {
