@@ -78,10 +78,10 @@ const CanvasReducer = (state = initialState, action) => {
                 ...state, canvas: state.canvas.map(block => {
                     if (state.canvas.indexOf(block) === action.blockIndex) {
                         return block.map(component => {
-                            debugger;
+
                             if (component.id === action.id) {
                                 let testComp = {...component, ...action.newAttrs}
-                                debugger;
+
                                 return testComp
                             } else
                                 return component

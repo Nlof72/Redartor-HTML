@@ -26,25 +26,23 @@ const BlockItem = (props) => {
     const currentCanvas = useSelector((state) => state?.canvasData?.canvas)
     const dispatch = useDispatch();
 
-    const moveCard = useCallback((dragIndex, hoverIndex) => {
-            let newCanvas = [...currentCanvas];
-            let currentBlockItems = newCanvas[currentBlock];
+    const moveItem = useCallback((dragIndex, dragId, hoverIndex) => {
+            let newCanvas = JSON.parse(JSON.stringify(currentCanvas));
+            let draggedItem = newCanvas.map(elem => elem.find(ele => ele.id === dragId)).find(el => el !== undefined);
+            let currentBlockItems = newCanvas[draggedItem.blockIndex];
+
             [currentBlockItems[dragIndex], currentBlockItems[hoverIndex]] = [currentBlockItems[hoverIndex], currentBlockItems[dragIndex]];
-            dispatch(UpdateCanvas(newCanvas))
+            dispatch(UpdateCanvas(JSON.parse(JSON.stringify(newCanvas))))
         },
         [currentCanvas]);
 
-    const moveCardToBlock = useCallback((draggedItemId, dropBlockIndex) => {
-            let newCanvas = [...currentCanvas];
-
+    const moveItemToBlock = useCallback((draggedItemId, dropBlockIndex) => {
+            let newCanvas = JSON.parse(JSON.stringify(currentCanvas));
             let draggedItem = newCanvas.map(elem => elem.find(ele => ele.id === draggedItemId)).find(el => el !== undefined);
             if (draggedItem.blockIndex === dropBlockIndex) {
                 return;
             }
-            let index = newCanvas[draggedItem.blockIndex].indexOf(draggedItem);
-            if (index > -1) {
-                newCanvas[draggedItem.blockIndex].splice(index, 1);
-            }
+            newCanvas[draggedItem.blockIndex] = newCanvas[draggedItem.blockIndex].filter(item=>item.id !== draggedItemId);
             draggedItem.blockIndex = dropBlockIndex;
             newCanvas[dropBlockIndex].push(draggedItem);
             dispatch(UpdateCanvas(newCanvas))
@@ -64,7 +62,7 @@ const BlockItem = (props) => {
         drop(item, monitor) {
             let draggedItemId = item.id;
             let dropBlockIndex = props.blockIndex;
-            moveCardToBlock(draggedItemId, dropBlockIndex);
+            moveItemToBlock(draggedItemId, dropBlockIndex);
         }
     });
     drop(ref);
@@ -83,7 +81,7 @@ const BlockItem = (props) => {
 
             {props.blockBody.map((component, index) => {
                     return <ComponentItem {...component} index={index} blockIndex={props.blockIndex}
-                                          onSelectItem={onSelectComponent} moveCard={moveCard}/>
+                                          onSelectItem={onSelectComponent} moveCard={moveItem}/>
                 }
             )}
         </BlockWrapper>
