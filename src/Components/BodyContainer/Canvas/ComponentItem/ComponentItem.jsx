@@ -7,7 +7,7 @@ import {ItemTypes} from "../../../../ItemTypesDND";
 
 
 
-const ComponentItem = ({id, index, blockIndex, componentType, css, html, onSelectItem, moveCard}) => {
+const ComponentItem = ({id, index, blockIndex, componentType, css, html, onSelectItem, moveCard, deleteItem}) => {
     const ref = useRef(null);
 
     const [{handlerId}, drop] = useDrop({
@@ -59,7 +59,7 @@ const ComponentItem = ({id, index, blockIndex, componentType, css, html, onSelec
     return (
         <ContainerBlock>
             <InnerButton>
-                <ClearIcon fontSize="little"/>
+                <ClearIcon fontSize="little" onClick={()=>deleteItem(id)}/>
             </InnerButton>
             {React.createElement(`${componentType}`,
                 {

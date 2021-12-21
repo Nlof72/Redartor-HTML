@@ -22,6 +22,13 @@ const BlockItem = (props) => {
     const currentCanvas = useSelector((state) => state?.canvasData?.canvas)
     const dispatch = useDispatch();
 
+    const deleteItem = (id) => {
+        let newCanvas = JSON.parse(JSON.stringify(currentCanvas));
+        let draggedItem = newCanvas.map(elem => elem.find(ele => ele.id === id)).find(el => el !== undefined);
+        newCanvas[draggedItem.blockIndex] = newCanvas[draggedItem.blockIndex].filter(item => item.id !== id);
+        dispatch(UpdateCanvas(JSON.parse(JSON.stringify(newCanvas))))
+    }
+
     const moveItem = useCallback((dragIndex, dragId, hoverIndex) => {
             let newCanvas = JSON.parse(JSON.stringify(currentCanvas));
             let draggedItem = newCanvas.map(elem => elem.find(ele => ele.id === dragId)).find(el => el !== undefined);
@@ -38,7 +45,7 @@ const BlockItem = (props) => {
             if (draggedItem.blockIndex === dropBlockIndex) {
                 return;
             }
-            newCanvas[draggedItem.blockIndex] = newCanvas[draggedItem.blockIndex].filter(item=>item.id !== draggedItemId);
+            newCanvas[draggedItem.blockIndex] = newCanvas[draggedItem.blockIndex].filter(item => item.id !== draggedItemId);
             draggedItem.blockIndex = dropBlockIndex;
             newCanvas[dropBlockIndex].push(draggedItem);
             dispatch(UpdateCanvas(newCanvas))
@@ -72,15 +79,15 @@ const BlockItem = (props) => {
             }>
             <IconButton onClick={props.deleteBlock} color="default" aria-label="add new block to canvas"
                         sx={{float: "right"}}>
-                <ClearIcon sx={{position:"absolute", right:"10px", top:"10px"}} fontSize="little"/>
+                <ClearIcon sx={{position: "absolute", right: "10px", top: "10px"}} fontSize="little"/>
             </IconButton>
 
-             <ContainerBlocks>
-            {props.blockBody.map((component, index) => {
-                    return <ComponentItem {...component} index={index} blockIndex={props.blockIndex}
-                                          onSelectItem={onSelectComponent} moveCard={moveItem}/>
-                }
-            )}
+            <ContainerBlocks>
+                {props.blockBody.map((component, index) => {
+                        return <ComponentItem {...component} index={index} blockIndex={props.blockIndex}
+                                              onSelectItem={onSelectComponent} moveCard={moveItem} deleteItem={deleteItem}/>
+                    }
+                )}
             </ContainerBlocks>
         </BlockWrapper>
     )
