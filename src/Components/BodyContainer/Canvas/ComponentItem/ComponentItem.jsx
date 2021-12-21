@@ -1,6 +1,7 @@
-import React, {useRef} from "react";
-import {useDrag, useDrop} from "react-dnd";
-import {ItemTypes} from "../../../../ItemTypesDND";
+import React from "react";
+import ClearIcon from "@mui/icons-material/Clear";
+import {IconButton} from "@mui/material";
+import {styled} from "@mui/styles";
 
 
 
@@ -54,19 +55,39 @@ const ComponentItem = ({id, index, blockIndex, componentType, css, html, onSelec
 
     }
     return (
-        React.createElement(`${componentType}`,
-            {
-                onClick: () => {
-                    onSelectItem(id, blockIndex)
-                },
+        <ContainerBlock>
+            <InnerButton>
+                <ClearIcon fontSize="little"/>
+            </InnerButton>
+            {React.createElement(`${componentType}`,
+                {
+                    onClick: () => {
+                        onSelectItem(id, blockIndex)
+                    },
                 ref: ref,
-                style: css,
-                ...html
-            }, (html?.content)))
+                    style: {...css},
+                    ...html,
+                }, (html?.content))}
+
+
+        </ContainerBlock>
+    )
 }
 
 export default ComponentItem;
 
 
 
+
+const ContainerBlock = styled('div')({
+    position: "relative",
+    padding: 20
+})
+
+const InnerButton = styled('div')({
+    position: "absolute",
+    top: 0,
+    right: 0,
+    cursor: "pointer",
+})
 
