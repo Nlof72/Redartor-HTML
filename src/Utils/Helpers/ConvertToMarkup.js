@@ -48,6 +48,72 @@ ${HTML}
     return (format(HTML, ' '.repeat(4)));
 }
 
+const convertToCSS = (param) => {
+    switch (param) {
+        case "paddingBottom":
+            return "padding-bottom";
+            break;
+        case "borderColor":
+            return "border-color";
+            break;
+        case "borderWidth":
+            return "border-width";
+            break;
+        case "borderStyle":
+            return "border-style";
+            break;
+        case "backgroundColor":
+            return "background-color";
+            break;
+        case "backgroundImage":
+            return "background-image";
+            break;
+        case "fontSize":
+            return "font-size";
+            break;
+        case "fontFamily":
+            return "font-family";
+            break;
+        case "textAlign":
+            return "text-align";
+            break;
+        case "lineHeight":
+            return "line-height";
+            break;
+        case "letterSpacing":
+            return "letter-spacing";
+            break;
+        case "marginLeft":
+            return "margin-left";
+            break;
+        case "marginTop":
+            return "margin-top";
+            break;
+        case "marginRight":
+            return "margin-right";
+            break;
+        case "marginBottom":
+            return "margin-bottom";
+            break;
+        case "paddingLeft":
+            return "padding-left";
+            break;
+        case "paddingTop":
+            return "padding-top";
+            break;
+        case "paddingRight":
+            return "padding-right";
+            break;
+        case "paddingBottom":
+            return "padding-bottom";
+            break;
+        default:
+            return param;
+            break;
+
+
+    }
+}
 export const getCSS = (components) => {
 
     let CSS = "";
@@ -58,8 +124,9 @@ export const getCSS = (components) => {
             let params = "";
 
             Object.keys(component.css).map((e, i) => {
-                return params += `\
-                ${e}: ${component.css[e]};
+                if (component.css[e])
+                    return params += `\
+                ${convertToCSS(e)}: ${component.css[e]};
                 `
             })
 
