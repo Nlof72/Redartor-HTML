@@ -31,7 +31,7 @@ const BlockItem = (props) => {
                     }
                 )}
             </ContainerBlocks>
-      
+
 
         </BlockWrapper>
     )
@@ -47,7 +47,6 @@ const BlockWrapper = styled(Box)({
 
 
 const ContainerBlocks = styled('div')({
-
     display: "flex",
     flexWrap: "wrap",
     flexFlow: "auto",
