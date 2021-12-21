@@ -17,7 +17,8 @@ const ComponentItem = ({
                            html,
                            onSelectItem,
                            moveCard,
-                           moveItemIntoDiv
+                           moveItemIntoDiv,
+                           deleteItem
                        }) => {
     const ref = useRef(null);
 
@@ -105,31 +106,54 @@ const ComponentItem = ({
     });
     drag(drop(ref));
 
+    let result;
+    if (parentId !== 0) {
+        children.push(React.createElement(`${componentType}`,
+            {
+                onClick: () => {
+                    onSelectItem(id, blockIndex)
+                },
+                ref: ref,
+                style: css,
+                ...html
+            }, (html?.content)));
+        result = <></>;
+    } else {
+        if (componentType === "img")
+            result = React.createElement(`${componentType}`,
+                {
+                    onClick: () => {
+                        onSelectItem(id, blockIndex)
+                    },
+                    ref: ref,
+                    style: css,
+                    ...html
+                }, (html?.content))
+        else {
+            result = React.createElement(`${componentType}`,
+                {
+                    onClick: () => {
+                        onSelectItem(id, blockIndex)
+                    },
+                    ref: ref,
+                    style: css,
+                    ...html
+                }, (html?.content), [children])
+            children = []
+        }
 
     }
     return (
         <ContainerBlock>
             <InnerButton>
-                <ClearIcon fontSize="little"/>
+                <ClearIcon fontSize="little" onClick={()=>deleteItem(id)}/>
             </InnerButton>
-            {React.createElement(`${componentType}`,
-                {
-                    onClick: () => {
-                        onSelectItem(id, blockIndex)
-                    },
-                ref: ref,
-                    style: {...css},
-                    ...html,
-                }, (html?.content))}
-
-
+            {result}
         </ContainerBlock>
     )
 }
 
 export default ComponentItem;
-
-
 
 
 const ContainerBlock = styled('div')({

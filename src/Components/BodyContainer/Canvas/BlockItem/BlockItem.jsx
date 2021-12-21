@@ -23,6 +23,12 @@ const BlockItem = (props) => {
     const dispatch = useDispatch();
     const [children, setChildren] = useState([]);
 
+    const deleteItem = (id) => {
+        let newCanvas = JSON.parse(JSON.stringify(currentCanvas));
+        let draggedItem = newCanvas.map(elem => elem.find(ele => ele.id === id)).find(el => el !== undefined);
+        newCanvas[draggedItem.blockIndex] = newCanvas[draggedItem.blockIndex].filter(item => item.id !== id);
+        dispatch(UpdateCanvas(JSON.parse(JSON.stringify(newCanvas))))
+    }
     const moveItem = useCallback((dragIndex, dragId, hoverIndex) => {
 
             let newCanvas = JSON.parse(JSON.stringify(currentCanvas));
@@ -50,7 +56,7 @@ const BlockItem = (props) => {
             draggedItem.blockIndex = dropBlockIndex;
             draggedItem.parentId = 0;
             newCanvas[dropBlockIndex].push(draggedItem);
-            console.log(newCanvas, "***newCanvas****1****")
+
             dispatch(UpdateCanvas(newCanvas))
         },
         [currentCanvas]);
@@ -111,7 +117,7 @@ const BlockItem = (props) => {
                     return <ComponentItem children={children} setChildren={setChildren} {...component} index={index}
                                           blockIndex={props.blockIndex}
                                           onSelectItem={onSelectComponent} moveCard={moveItem}
-                                          moveItemIntoDiv={moveItemIntoDiv}/>
+                                          moveItemIntoDiv={moveItemIntoDiv} deleteItem={deleteItem} />
                 }
             )}
             </ContainerBlocks>
