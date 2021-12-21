@@ -26,7 +26,7 @@ const BlockItem = (props) => {
 
             <IconButton onClick={props.deleteBlock} color="default" aria-label="add new block to canvas"
                         sx={{float: "right"}}>
-                <ClearIcon fontSize="little"/>
+                <ClearIcon sx={{position:"absolute", right:"10px", top:"10px"}} fontSize="little"/>
             </IconButton>
 
             {props.blockBody.map((component) => {

@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 const getComponentParams = (compId, blockId, canvas) => {
     if (compId) {
         let component = canvas[blockId].find(item => item.id === compId);
-        return {css: component.css, html: component.html}
+        return {html: component.html, css: component.css,}
     }
 
     return null;
