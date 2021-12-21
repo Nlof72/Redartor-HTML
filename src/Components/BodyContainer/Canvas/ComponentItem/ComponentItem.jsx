@@ -1,4 +1,7 @@
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
+import ClearIcon from "@mui/icons-material/Clear";
+import {IconButton} from "@mui/material";
+import {styled} from "@mui/styles";
 import {useDrag, useDrop} from "react-dnd";
 import {ItemTypes} from "../../../../ItemTypesDND";
 
@@ -103,50 +106,41 @@ const ComponentItem = ({
     drag(drop(ref));
 
 
-    let result;
-    if (parentId !== 0) {
-        children.push(React.createElement(`${componentType}`,
-            {
-                onClick: () => {
-                    onSelectItem(id, blockIndex)
-                },
-                ref: ref,
-                style: css,
-                ...html
-            }, (html?.content)));
-        result = <></>;
-    } else {
-        if (componentType === "img")
-            result = React.createElement(`${componentType}`,
-                {
-                    onClick: () => {
-                        onSelectItem(id, blockIndex)
-                    },
-                    ref: ref,
-                    style: css,
-                    ...html
-                }, (html?.content))
-        else {
-            result = React.createElement(`${componentType}`,
-                {
-                    onClick: () => {
-                        onSelectItem(id, blockIndex)
-                    },
-                    ref: ref,
-                    style: css,
-                    ...html
-                }, (html?.content), [children])
-            children = []
-        }
-
     }
+    return (
+        <ContainerBlock>
+            <InnerButton>
+                <ClearIcon fontSize="little"/>
+            </InnerButton>
+            {React.createElement(`${componentType}`,
+                {
+                    onClick: () => {
+                        onSelectItem(id, blockIndex)
+                    },
+                ref: ref,
+                    style: {...css},
+                    ...html,
+                }, (html?.content))}
 
 
-    return result;
+        </ContainerBlock>
+    )
 }
 
 export default ComponentItem;
 
 
 
+
+const ContainerBlock = styled('div')({
+    position: "relative",
+    padding: 20
+})
+
+const InnerButton = styled('div')({
+    position: "absolute",
+    top: 0,
+    right: 0,
+    cursor: "pointer",
+})
 

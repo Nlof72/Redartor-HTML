@@ -12,10 +12,6 @@ import {activeColor} from "../../../../theme";
 import {useDrop} from "react-dnd";
 import {ItemTypes} from "../../../../ItemTypesDND";
 
-const BlockWrapper = styled(Box)({
-    minHeight: "15%",
-    border: "2px solid lightgray",
-})
 
 const BlockItem = (props) => {
 
@@ -107,9 +103,10 @@ const BlockItem = (props) => {
             }>
             <IconButton onClick={props.deleteBlock} color="default" aria-label="add new block to canvas"
                         sx={{float: "right"}}>
-                <ClearIcon fontSize="little"/>
+                <ClearIcon sx={{position:"absolute", right:"10px", top:"10px"}} fontSize="little"/>
             </IconButton>
 
+             <ContainerBlocks>
             {props.blockBody.map((component, index) => {
                     return <ComponentItem children={children} setChildren={setChildren} {...component} index={index}
                                           blockIndex={props.blockIndex}
@@ -117,8 +114,24 @@ const BlockItem = (props) => {
                                           moveItemIntoDiv={moveItemIntoDiv}/>
                 }
             )}
+            </ContainerBlocks>
         </BlockWrapper>
     )
 }
 
 export default BlockItem;
+
+
+const BlockWrapper = styled(Box)({
+    minHeight: "250px",
+    border: "2px solid lightgray",
+})
+
+
+const ContainerBlocks = styled('div')({
+    display: "flex",
+    flexWrap: "wrap",
+    flexFlow: "auto",
+    gap: 5,
+    width: "100%"
+})
