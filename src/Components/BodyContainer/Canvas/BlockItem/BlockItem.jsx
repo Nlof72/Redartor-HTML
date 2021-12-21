@@ -7,10 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {SelectCurrentBlock, SelectCurrentComponent} from "../../../../Redux/CanvasReducer";
 import {activeColor} from "../../../../theme";
 
-const BlockWrapper = styled(Box)({
-    minHeight: "15%",
-    border: "2px solid lightgray",
-})
 
 const BlockItem = (props) => {
     const onSelectComponent = (id, blockItem) => {
@@ -29,12 +25,32 @@ const BlockItem = (props) => {
                 <ClearIcon sx={{position:"absolute", right:"10px", top:"10px"}} fontSize="little"/>
             </IconButton>
 
-            {props.blockBody.map((component) => {
-                    return <ComponentItem {...component} blockIndex={props.blockIndex} onSelectItem={onSelectComponent}/>
-                }
-            )}
+             <ContainerBlocks>
+                {props.blockBody.map((component) => {
+                        return <ComponentItem {...component} blockIndex={props.blockIndex} onSelectItem={onSelectComponent}/>
+                    }
+                )}
+            </ContainerBlocks>
+      
+
         </BlockWrapper>
     )
 }
 
 export default BlockItem;
+
+
+const BlockWrapper = styled(Box)({
+    minHeight: "250px",
+    border: "2px solid lightgray",
+})
+
+
+const ContainerBlocks = styled('div')({
+
+    display: "flex",
+    flexWrap: "wrap",
+    flexFlow: "auto",
+    gap: 5,
+    width: "100%"
+})
