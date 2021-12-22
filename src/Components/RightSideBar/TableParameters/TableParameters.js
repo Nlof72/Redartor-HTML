@@ -32,7 +32,7 @@ const TableParameters = (props) => {
             </StyledHeader>
             {props.componentAttrs && Object.keys(props.componentAttrs).map((header) => {
 
-                return <TableContainer sx={{maxHeight: "76vh", overflow: "auto"}}>
+                return <TableContainer sx={{maxHeight: "58vh", overflow: "auto"}}>
                     {Object.keys(props.componentAttrs[header]).length !== 0 &&
                         <StyledTableHead>
                             {header.toUpperCase()}
