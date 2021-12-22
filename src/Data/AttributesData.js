@@ -27,7 +27,7 @@ export const AttributesData = {
         rus: "Ссылка",
         type: "string",
     },
-    alr: {
+    alt: {
         rus: "Альтернативный источник",
         type: "string",
     },

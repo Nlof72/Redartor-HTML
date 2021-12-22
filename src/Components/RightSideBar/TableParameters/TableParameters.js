@@ -7,7 +7,6 @@ import {
 import {useDispatch} from "react-redux";
 import {SetComponentAttributes} from "../../../Redux/CanvasReducer";
 import {AttributesData} from "../../../Data/AttributesData";
-import {ChromePicker} from 'react-color'
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -31,8 +30,9 @@ const TableParameters = (props) => {
             <StyledHeader>
                 {"Параметры"}
             </StyledHeader>
-            {props.componentAttrs && Object.keys(props.componentAttrs).map((header) => (
-                <TableContainer sx={{maxHeight: "76vh", overflow: "auto"}}>
+            {props.componentAttrs && Object.keys(props.componentAttrs).map((header) => {
+
+                return <TableContainer sx={{maxHeight: "76vh", overflow: "auto"}}>
                     {Object.keys(props.componentAttrs[header]).length !== 0 &&
                         <StyledTableHead>
                             {header.toUpperCase()}
@@ -40,25 +40,25 @@ const TableParameters = (props) => {
                         </StyledTableHead>}
                     <Table aria-label="customized table">
                         <TableBody>
-                            {
-                                Object.entries(props.componentAttrs[header]).map((row) => (
-                                    <StyledTableRow>
-                                        <StyledTableCell><b>{AttributesData[row[0]].rus}</b></StyledTableCell>
-                                        <StyledTableCell>
-                                            <AttributeInput
-                                                name={row[0]}
-                                                type={header}
-                                                fieldType={AttributesData[row[0]].type}
-                                                value={row[1]}
-                                                OnAttrsValueChange={OnAttrsValueChange}
-                                            />
-                                        </StyledTableCell>
-                                    </StyledTableRow>
-                                ))}
+                            {Object.entries(props.componentAttrs[header]).map((row) => {
+                                console.log(row)
+                                return <StyledTableRow>
+                                    <StyledTableCell><b>{AttributesData[row[0]].rus}</b></StyledTableCell>
+                                    <StyledTableCell>
+                                        <AttributeInput
+                                            name={row[0]}
+                                            type={header}
+                                            fieldType={AttributesData[row[0]].type}
+                                            value={row[1]}
+                                            OnAttrsValueChange={OnAttrsValueChange}
+                                        />
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                            })}
                         </TableBody>
                     </Table>
                 </TableContainer>
-            ))}
+            })}
         </Box>
     )
 }
@@ -101,23 +101,23 @@ const AttributeInput = (props) => {
             case "list":
                 return <Select
                     value={props.value}
-                    sx={{width:120, height:30}}
+                    sx={{width: 120, height: 30}}
                     onChange={(event) => {
                         props.OnAttrsValueChange(props.name, event.target.value, props.type)
                     }}
                 >
                     {AttributesData[props.name].listOptions.map((item, index) => {
-                                    return <MenuItem value={item}>{capitalizeFirstLetter(item)}</MenuItem>;
-                                })}
+                        return <MenuItem value={item}>{capitalizeFirstLetter(item)}</MenuItem>;
+                    })}
                 </Select>
-                // return (
-                //     <select onChange={(event) => {
-                //         props.OnAttrsValueChange(props.name, event.target.value, props.type)
-                //     }}>
-                //         {AttributesData[props.name].listOptions.map((item, index) => {
-                //             return <option value={item}>{capitalizeFirstLetter(item)}</option>;
-                //         })}
-                //     </select>)
+            // return (
+            //     <select onChange={(event) => {
+            //         props.OnAttrsValueChange(props.name, event.target.value, props.type)
+            //     }}>
+            //         {AttributesData[props.name].listOptions.map((item, index) => {
+            //             return <option value={item}>{capitalizeFirstLetter(item)}</option>;
+            //         })}
+            //     </select>)
             default:
                 return "div"
         }
