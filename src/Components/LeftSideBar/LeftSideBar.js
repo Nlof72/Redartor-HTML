@@ -35,7 +35,7 @@ const ListRenderSelector = (searchData) => {
             icon: ActionIcon
         }, ...Topics]
 
-        let searchComponents = [...Components.filter((items, index) => items.name.toLowerCase().includes(searchData))];
+        let searchComponents = [...Components.filter((items, index) => items.name.includes(searchData))];
         searchComponents = searchComponents.map((item, index) => {
             return {...item, topicId: 0}
         });
