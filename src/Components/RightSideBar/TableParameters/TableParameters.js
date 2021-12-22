@@ -21,18 +21,18 @@ const TableParameters = (props) => {
     }
     const dispatch = useDispatch();
 
-
     return (
         <Box sx={{
-            height: "fit-content",
-            maxHeight: "100vh"
+            display: "flex",
+            flexDirection: "column",
+            maxHeight: "100vh",
+            width: "340px"
         }}>
-            <StyledHeader>
+            <StyledHeader sx={{flexShrink: 0}}>
                 {"Параметры"}
             </StyledHeader>
-            {props.componentAttrs && Object.keys(props.componentAttrs).map((header) => {
-
-                return <TableContainer sx={{maxHeight: "76vh", overflow: "auto"}}>
+            {props.componentAttrs && Object.keys(props.componentAttrs).map((header, index) => {
+                return <TableContainer sx={{flexShrink: index === 0 ? 0 : 6, overflow: "auto"}}>
                     {Object.keys(props.componentAttrs[header]).length !== 0 &&
                         <StyledTableHead>
                             {header.toUpperCase()}
@@ -41,7 +41,6 @@ const TableParameters = (props) => {
                     <Table aria-label="customized table">
                         <TableBody>
                             {Object.entries(props.componentAttrs[header]).map((row) => {
-                                console.log(row)
                                 return <StyledTableRow>
                                     <StyledTableCell><b>{AttributesData[row[0]].rus}</b></StyledTableCell>
                                     <StyledTableCell>
@@ -77,10 +76,12 @@ const AttributeInput = (props) => {
                         props.OnAttrsValueChange(props.name, event.target.value, props.type);
                     }}
                     variant="outlined"/>
+
             case "bool":
                 return <Checkbox value={props.value} onChange={(event) => {
                     props.OnAttrsValueChange(props.name, event.target.checked, props.type)
                 }}/>
+
             case "value":
                 return <TextField
                     value={props.value.replace(/\D/g, '')}
@@ -94,10 +95,12 @@ const AttributeInput = (props) => {
                         style: {height: 30},
                     }}
                 />
+
             case "color":
                 return <input type="color" value={props.value} onChange={(event) => {
                     props.OnAttrsValueChange(props.name, event.target.value, props.type)
                 }}/>
+
             case "list":
                 return <Select
                     value={props.value}
@@ -106,24 +109,16 @@ const AttributeInput = (props) => {
                         props.OnAttrsValueChange(props.name, event.target.value, props.type)
                     }}
                 >
-                    {AttributesData[props.name].listOptions.map((item, index) => {
+                    {AttributesData[props.name].listOptions.map((item) => {
                         return <MenuItem value={item}>{capitalizeFirstLetter(item)}</MenuItem>;
                     })}
                 </Select>
-            // return (
-            //     <select onChange={(event) => {
-            //         props.OnAttrsValueChange(props.name, event.target.value, props.type)
-            //     }}>
-            //         {AttributesData[props.name].listOptions.map((item, index) => {
-            //             return <option value={item}>{capitalizeFirstLetter(item)}</option>;
-            //         })}
-            //     </select>)
+
             default:
                 return "div"
         }
     }
     return (
-
         <div>
             {AttrTypeHandler(props.fieldType)}
         </div>
