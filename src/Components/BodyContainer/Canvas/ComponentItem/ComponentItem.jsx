@@ -59,7 +59,7 @@ const ComponentItem = ({id, index, blockIndex, componentType, css, html, onSelec
     return (
         <ContainerBlock>
             <InnerButton>
-                <ClearIcon fontSize="little" onClick={()=>deleteItem(id)}/>
+                <ClearIcon fontSize="little" onClick={()=>{onSelectItem(null, null); deleteItem(id)}}/>
             </InnerButton>
             {React.createElement(`${componentType}`,
                 {
