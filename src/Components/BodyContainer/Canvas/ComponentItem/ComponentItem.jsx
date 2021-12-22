@@ -1,6 +1,5 @@
 import React, {useRef} from "react";
 import ClearIcon from "@mui/icons-material/Clear";
-import {IconButton} from "@mui/material";
 import {styled} from "@mui/styles";
 import {useDrag, useDrop} from "react-dnd";
 import {ItemTypes} from "../../../../ItemTypesDND";
@@ -56,6 +55,7 @@ const ComponentItem = ({id, index, blockIndex, componentType, css, html, onSelec
     if (componentType==="div"){
 
     }
+    console.log(css)
     return (
         <ContainerBlock>
             <InnerButton>
@@ -67,7 +67,7 @@ const ComponentItem = ({id, index, blockIndex, componentType, css, html, onSelec
                         onSelectItem(id, blockIndex)
                     },
                 ref: ref,
-                    style: {...css},
+                    style: {...css, backgroundImage: `url("${css.backgroundImage}")`},
                     ...html,
                 }, (html?.content))}
 
