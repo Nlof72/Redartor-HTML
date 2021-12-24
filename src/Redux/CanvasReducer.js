@@ -7,6 +7,8 @@ const ADD_COMPONENT_TO_BLOCK = "ADD-COMPONENT-TO-BLOCK";
 const SELECT_CURRENT_BLOCK = "SELECT-CURRENT-BLOCK";
 const SELECT_CURRENT_COMPONENT = "SELECT-CURRENT-COMPONENT";
 const SET_COMPONENT_ATTRIBUTES = "SET-COMPONENT-ATTRIBUTES";
+const UPDATE_CANVAS_ORDER = "UPDATE-CANVAS-ORDER";
+const REPLACE_COMPONENT_TO_BLOCK = "REPLACE-COMPONENT-TO-BLOCK";
 
 let initialState = {
     canvas: [[]],
@@ -14,21 +16,22 @@ let initialState = {
     selectedComponentId: null,
 }
 
-const CreateComponentByParams = (componentData, state) => {
+const CreateComponentByParams = (componentData, blockIndex, state) => {
     let newComponent = {
         id: uuidv4(),
         orderId: state.canvas[state.currentBlock].length + 1,
         parentId: 0,
+        blockIndex: blockIndex,
         componentType: componentData.type,
         css: {},
         html: {},
     };
 
     if (Object.keys(componentData.html).length !== 0) {
-        newComponent["html"] ={...newComponent["html"], ...componentData.html}
+        newComponent["html"] = {...newComponent["html"], ...componentData.html}
     }
     if (Object.keys(componentData.css).length !== 0) {
-        newComponent["css"] ={...newComponent["css"], ...componentData.css}
+        newComponent["css"] = {...newComponent["css"], ...componentData.css}
     }
     return newComponent;
 }
@@ -54,7 +57,7 @@ const CanvasReducer = (state = initialState, action) => {
             return {
                 ...state, canvas: state.canvas.map(block => {
                     if (state.canvas.indexOf(block) === action.blockIndex) {
-                        return [...block, CreateComponentByParams(action.component, state)];
+                        return [...block, CreateComponentByParams(action.component,action.blockIndex, state)];
                     } else {
                         return block
                     }
@@ -75,8 +78,10 @@ const CanvasReducer = (state = initialState, action) => {
                 ...state, canvas: state.canvas.map(block => {
                     if (state.canvas.indexOf(block) === action.blockIndex) {
                         return block.map(component => {
+
                             if (component.id === action.id) {
                                 let testComp = {...component, ...action.newAttrs}
+
                                 return testComp
                             } else
                                 return component
@@ -86,6 +91,12 @@ const CanvasReducer = (state = initialState, action) => {
                     }
                 })
             }
+        case UPDATE_CANVAS_ORDER:
+            return {
+                ...state, canvas: action.newCanvas
+            }
+        case REPLACE_COMPONENT_TO_BLOCK:
+            return {...state}
         default:
             return state;
     }
@@ -109,12 +120,22 @@ export const SelectCurrentComponent = (id, blockIndex) => ({
     id: id
 })
 
-export const SelectCurrentBlock = (blockIndex) => ({type: SELECT_CURRENT_BLOCK, blockIndex: blockIndex})
+export const SelectCurrentBlock = (blockIndex) => ({
+    type: SELECT_CURRENT_BLOCK,
+    blockIndex: blockIndex
+})
+
 export const SetComponentAttributes = (id, blockIndex, attrs) => ({
     type: SET_COMPONENT_ATTRIBUTES,
     blockIndex: blockIndex,
     id: id,
     newAttrs: attrs
 })
+
+export const UpdateCanvas = (newCanvas) => ({
+    type: UPDATE_CANVAS_ORDER,
+    newCanvas: newCanvas
+})
+
 
 export default CanvasReducer;

@@ -1,4 +1,19 @@
 export const AttributesData = {
+    display:{
+        rus: "Отображение",
+        type: "string",
+    },
+    justifyContent:{
+        rus: "Выравнивание элементов",
+        type: "list",
+        listOptions: ["flex-start","flex-end", "center", "space-between", "space-around"]
+    },
+    flexDirection:{
+        rus: "Направление элементов",
+        type: "list",
+        listOptions: ["column","row", "center", "space-between", "space-around"]
+    },
+
     content: {
         rus: "Содержимое",
         type: "string",
@@ -27,7 +42,7 @@ export const AttributesData = {
         rus: "Ссылка",
         type: "string",
     },
-    alr: {
+    alt: {
         rus: "Альтернативный источник",
         type: "string",
     },

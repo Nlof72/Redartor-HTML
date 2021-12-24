@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 const getComponentParams = (compId, blockId, canvas) => {
     if (compId) {
-        let component = canvas[blockId].find(item => item.id === compId);
+        let component = canvas.map(elem => elem.find(ele => ele.id === compId)).find(el => el !== undefined);
         return {html: component.html, css: component.css,}
     }
 
